@@ -7,77 +7,48 @@
 
 {% block content %}
 
+<a href="/" id="textTocLink">&laquo; Home</a>
+
 <div id="textsPage">
 
-<h1>Sefaria Table of Contents</h1>
+<h1>The Sefaria Library</h1>
+<br>
+
+<center>
+	<i>The Sefaria Library is a growing and evolving collection of Jewish texts. Some texts are available in their entirety, others may be incomplete or fragmentary. Click on a text to see details about its current availabilty.</i>
+	<br>
+	<a id="alpha" href="#alpha">Sort texts alphabetically</a>.
+</center>
+
 
 {% include "elements/texts_list.html" %}
 
+</div>
 {% endblock %}
 
 {% block js %}
-	<script>{% include "js/django-csrf.js" %}</script>
 	<script>
 
 		var sjs = sjs || {};
 
-		$.extend(sjs, {
-			toc: {{ toc|jsonify }}
-		});
+		sjs._uid = {{ request.user.id|default:"null" }};
 
 		$(function() {
-			/* Scroll to sections
-			var hash = location.hash;
-			if (hash !== "") {
-				hash = hash.slice(0, -1); // Remove "~"" 
-				$(hash + ", " + hash + ">a").trigger("click")
-					.parents(".category").find(".subBox").slideDown(50);
-				console.log(hash)
-				$(window).scrollTo($(hash), -50);
-			}
-			$(window).bind('beforeunload', function() { 
-          	  location.hash = sjs.lastClicked + "~";
-       		});
-			*/
-
-			// Zip up and Down Text Category 
-			$("#textsPage .category > table").on("click", function(e) {
-				if ($(this).hasClass("open")) {
-					$(this).closest("li").children(".subBox").slideUp(50);
-				} else {
-					$(this).closest("li").children(".subBox").slideDown(50);
-					sjs.lastClicked = this.id;
-				}
-				$(this).toggleClass("open");
+			
+			// Alphabetize Page
+			$("#alpha").click(function(e) {
+				$("#textsPage .text").each(function(){
+					var $link = $(this).find(".title a");
+					$link.text($link.attr("href").replace(/_/g, " ").slice(1));
+				}).sort(function(a,b) {
+					return a.innerText > b.innerText ? 1:-1;
+				}).detach().prependTo("#textsPage #textsList");
+				$("#textsPage .category").remove();
+				$(this).text("Sort texts by category").attr("href", "/texts")
+					.unbind("click");
+				e.preventDefault();
 			});
 
-			// Impperfectly working expand all button (actually toggle all)
-			$("#expand").on("click", function(){
-				$("#textsPage .categoryName").trigger("click");
-			})
-
-			$(".heTitle.empty").on("click", function() {
-				if ($(this).find("a").length) {
-					// A link to login indicates not logged in
-					return;
-				}
-				var title = $(this).closest("table").attr("data-title");
-				var he = prompt("Enter the Hebrew title of " + title + ":");
-				console.log(he);
-				if (he) {
-					$(this).text(he);
-					var postJSON = JSON.stringify({title: title, heTitle: he});
-					var title = title.replace(/ /g, "_");
-					$.post("/api/index/" + title,  {"json": postJSON}, function(data) {
-						console.log(data);
-						if ("error" in data) {
-							console.log(data["error"]);
-						} else {
-
-						}
-					});
-				}
-			});
 		});
 
 	</script>

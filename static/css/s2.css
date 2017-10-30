@@ -1,0 +1,4538 @@
+body {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  color: #333;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  /* font-family: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif; */
+}
+body .he {
+  /* font-family: "Heebo", sans-serif; */
+}
+*::selection {
+  background-color: #D2DCFF;
+}
+body.sepia {
+  background-color: #F9F9F7;
+}
+body.dark {
+  background-color: #333331;
+}
+body:not(.user-is-tabbing) *:focus {
+  outline: none;
+}
+.sans,
+.sans .en,
+#s2 .sans .en,
+.sans .int-en {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.sans .he,
+#s2 .sans .he,
+.sans .int-he {
+  font-family: "Heebo", sans-serif;
+}
+#s2 {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+#s2.headerOnly {
+  z-index: 1000;
+  height: 54px;
+}
+.readerApp {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+.readerApp.interface-hebrew{
+  direction: rtl;
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari/Opera */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, Chrome */
+}
+input.noselect {
+    -webkit-user-select: auto; /* Safari/Opera -- required for Safari to allow inputs to be accessible. See http://caniuse.com/#feat=user-select-none "Known Issues" for details  TODO Check back to see if bug is fixed in future version */
+}
+.interface-hebrew #panelWrapBox{
+  direction: rtl;
+}
+.interface-english #panelWrapBox{
+  direction: ltr;
+}
+#panelWrapBox {
+  position: absolute;
+  top: 54px;
+  height: calc(100% - 54px);
+  box-sizing: border-box;
+}
+#panelWrapBox.wrapBoxScroll {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.singlePanel #panelWrapBox {
+  padding-top: 0;
+  height: 100%;
+  top: 0;
+}
+.headerInner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 54px;
+  background: white;
+  z-index: 1001;
+  box-sizing: border-box;
+  padding: 0px 30px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerOnly .headerInner {
+  border-bottom: 1px solid #ccc;
+}
+.interface-hebrew .headerInner{
+  direction: rtl;
+}
+
+.headerInner .headerNavSection{
+  display: flex;
+  justify-content: flex-start;
+}
+.headerInner .headerHomeSection{
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  margin-left: -51px;
+}
+.headerInner .headerLinksSection{
+  display: flex;
+  justify-content: flex-end;
+  min-width: 40%;
+}
+.header .header-nav{
+  margin-top: 1px;
+}
+.header .header-links{
+  margin-top: 1px;
+}
+.header .library, .header .home, .header .account, .header .notifications, .header .readerNavMenuSearchButton {
+  cursor: pointer;
+}
+.header .library, .header .account, .header .readerNavMenuSearchButton {
+  display: inline-block;
+  color: #999;
+}
+.header .searchBox {
+  overflow: hidden;
+  display: inline-block;
+  padding: 0;
+  text-align: inherit;
+  margin: 0px 17px 0 17px;
+}
+.header .searchBox input{
+  background-color: transparent; /*for firefox */
+  margin-top: 1px;
+}
+.header .search {
+  outline: none;
+  border: none;
+  box-shadow: none;
+  color: black;
+  font-size:  18px;
+  font-family: "adobe-garamond-pro", Georgia, serif;
+  vertical-align: 1px;
+  margin: 0;
+}
+.search-override {
+  border-top: solid 1px #999;
+  padding-top: 5px;
+}
+.header .home {
+  margin-top: 1px;
+}
+.header .login:first-child{
+  margin: auto 30px;
+}
+.header .account:first-child{
+  margin: auto 17px;
+}
+@media (max-width: 540px) {
+  .header .home {
+    display: none;
+  }
+  .header .accountLinks .login {
+    margin-left: 16px;
+  }
+
+  .header .searchBox input{
+    width: 45%;
+  }
+  .header .login:first-child {
+    margin: auto 20px;
+  }
+  .headerInner .headerNavSection{
+    width: 48%;
+  }
+  img.keyboardInputInitiator{
+    display: none;
+  }
+}
+.header .home img {
+  opacity: 0.8;
+  vertical-align: middle;
+  height: 22px;
+}
+.header .accountLinks {
+  display: inline-block;
+  font-size: 15px;
+  margin-top: 2px;
+}
+.header .account, .header .notifications {
+  display: inline-block;
+  vertical-align: middle;
+}
+.header .library, .header .account {
+  font-size: 24px;
+  line-height: 24px;
+}
+.header .library{
+}
+.header .notifications {
+  display: inline-block;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
+  line-height: 24px;
+  height: 24px;
+  width: 24px;
+  text-align: center;
+  border-radius: 15px;
+  background-color: #aaa;
+  color: white;
+  font-size: 16px;
+  margin-top: -1px;
+}
+.header .notifications.unread {
+  background-color: #EFB4B6;
+}
+.header .login {
+  color: #999;
+  display: inline-block;
+  line-height: 1;
+}
+.header .login .en {
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
+}
+.header .login .he {
+  font-family: "Heebo", sans-serif;
+}
+.header .testWarning {
+  display: inline-block;
+  color: white;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
+  background-color: #EFB4B6;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1;
+  padding: 6px 16px;
+  vertical-align: middle;
+  height: 14px;
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
+  margin-right: 15px;
+}
+.header .testWarning:hover {
+  text-decoration: underline;
+}
+.header .he {
+  /* temp, until we support hebrew header */
+  display: none;
+}
+.testMessageBox {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 5000;
+}
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.3;
+  position: fixed;
+  z-index: 1001;
+}
+#interruptingMessageBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  opacity: 1;
+  transition: opacity .3s ease-in;
+}
+#interruptingMessageBox.hidden {
+  opacity: 0;
+}
+#interruptingMessageOverlay {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 0.7;
+  position: fixed;
+}
+#interruptingMessage {
+  max-width: 90%;
+  box-sizing: border-box;
+  position: fixed;
+  padding: 18px 15px;
+  z-index: 1001;
+  border: 1px solid #E6E6E6;
+  background-color: #F9F9F7;
+  text-align: center;
+  color: #666;
+}
+#interruptingMessageContentBox {
+  position: relative;
+  border: 1px solid #CCC;
+  background-color: white;
+}
+#interruptingMessageClose {
+  position: absolute;
+  top: 2px;
+  right: 12px;
+  color: #AAA;
+  font-size: 32px;
+  cursor: pointer;
+}
+#interruptingMessageContent {
+  padding: 32px 32px 16px 32px;
+}
+#interruptingMessage h1 {
+  font-style: italic;
+  font-size: 28px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-align: center;
+  margin: 0 0 30px;
+  color: #333;
+}
+.interface-hebrew #interruptingMessage h1{
+  font-style: normal;
+}
+.testMessage {
+  position: fixed;
+  z-index: 5001;
+  width: 450px;
+  height: 180px;
+  margin-top: -90px;
+  margin-left: -225px;
+  left: 50%;
+  top: 50%;
+  background-color: #F9F9F7;
+  padding: 32px 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.testMessage .title {
+  font-size: 18px;
+  line-height: 1.4;
+}
+.testMessage .button {
+  margin-top: 20px;
+}
+.header .account img {
+  height: 24px;
+  width: 24px;
+  opacity: 0.4;
+  margin-top: 2px
+}
+.header .readerNavMenuSearchButton,
+.header .readerNavMenuMenuButton {
+  margin: 0 8px 0 6px;
+  font-size: 17px;
+}
+
+.header .readerNavMenuSearchButton{
+  position:relative;
+  top: -1px;
+}
+
+.header .headerNavContent {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  top: 0;
+  padding-top: 54px;
+  z-index: 1000;
+}
+.ui-autocomplete {
+  position: absolute;
+  background: white;
+  list-style-type: none;
+  padding: 6px 0;
+  border: 1px solid #aaa;
+  border-top: 1px solid #ddd;
+  z-index: 1002 !important;
+  font-family: "adobe-garamond-pro", Georgia, serif;
+}
+.ui-autocomplete .ui-menu-item a {
+  padding: 4px 12px;
+  font-size: 16px;
+  color: black;
+  cursor: pointer;
+  display: block;
+}
+.ui-autocomplete .ui-menu-item a.ui-state-focus {
+  background-color: #E9E9E7;
+}
+.ui-helper-hidden-accessible {
+  display: none;
+}
+#globalWarningMessage {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  text-align: center;
+  bottom: 0px;
+  color: white;
+  background-color: #EFB4B6;
+  padding: 14px 20px;
+  box-sizing: border-box;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
+}
+#globalWarningMessage .close {
+ float: right;
+ cursor: pointer;
+ font-size: 20px;
+}
+.multiPanel .readerPanelBox {
+  box-sizing: border-box;
+}
+.readerPanelBox {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  direction:ltr;
+}
+.readerPanelBox + .readerPanelBox {
+  border-left: 1px solid #eee;
+}
+.readerPanelBox.sidebar {
+  border-left: none;
+}
+.readerPanel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: inherit;
+  font-family: "adobe-garamond-pro", "Crimson Text", Georgia, serif;
+}
+.readerContent {
+  width: 100%;
+  height: calc(100% - 58px);
+  background-color: inherit;
+}
+.dark .readerContent {
+  color: white;
+}
+.readerContent .readerError {
+  padding: 100px 150px;
+}
+.readerContent .readerError .readerErrorText {
+  padding-top: 20px;
+  font-size: .8em;
+}
+.textColumn {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  box-sizing: border-box;
+  background-color: inherit;
+}
+.textColumn .loadingMessage.base {
+  margin: 30px 0;
+  color: #999;
+  text-align: center;
+  font-weight: lighter;
+  font-style: normal;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /*border-bottom: 4px solid #E6E5E6;*/
+  padding: 0 6px 3px;
+}
+.textColumn .loadingMessage.base.prev {
+  margin: 70px 0 30px;
+}
+.textColumn .loadingMessage.base.next {
+  margin: 30px 0 70px;
+  height: 50%;
+}
+.textColumn .loadingMessage.base.next.final {
+}
+.he {
+  font-size: 120%;
+}
+.int-he {
+  font-size: 110%;
+}
+.int-he .int-he {
+  font-size: inherit;
+}
+.readerPanel .he {
+  font-family: "Frank Ruehl Libre", "Taamey Frank", "Times New Roman", serif;
+  direction: rtl;
+  text-align: right;
+}
+.interface-hebrew .readerPanel .en{
+  direction: ltr;
+}
+.interface-hebrew .readerPanel .readerNavMenu,
+.readerPanel.hebrew .readerNavSection,
+.readerPanel.hebrew .readerNavMenu .gridBox {
+  direction: rtl;
+}
+.interface-english .readerPanel .readerNavMenu,
+.readerPanel.english .readerNavSection,
+ .readerPanel.english .readerNavMenu .gridBox{
+  direction: ltr;
+}
+.readerPanel.bilingual .readerNavSection,
+ .readerPanel.bilingual .readerNavMenu .gridBox{
+  direction: ltr;
+}
+.readerPanel.english .he {
+  display: none;
+}
+.readerPanel.english .he.heOnly{
+  display: inline;
+  text-align: right;
+}
+.readerPanel.english .en {
+  display: inline;
+}
+.readerPanel.hebrew .he {
+  display: inline;
+  text-align: right;
+}
+.readerPanel.hebrew .he .enInHe {
+  font-size: 83%;
+}
+.enInHe{
+  unicode-bidi: isolate;
+}
+.readerPanel.hebrew .en {
+  display: none;
+}
+.readerPanel.english .heOnly .he,
+.readerPanel.bilingual .heOnly .he {
+  display: inline;
+}
+.languageToggle {
+  display: inline;
+  line-height: 32px;
+}
+.languageToggle img {
+  opacity: 0.2;
+  height: 18px;
+}
+.systemPanel.english .content .he {
+  display: none;
+}
+.systemPanel.hebrew .content .en {
+  display: none;
+}
+.interface-english .systemPanel .content .int-en {
+  display: inline;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.interface-hebrew .systemPanel .content .int-he {
+  display: inline;
+  font-family: "Heebo", sans-serif;
+}
+.loadingMessage {
+  font-size: 14px;
+  font-style: italic;
+}
+.bilingual .loadingMessage .he {
+  display: none;
+}
+.readerPanel.light {
+  background-color: white;
+}
+.readerPanel.sepia {
+  background-color: #f7f7f7;
+}
+.readerPanel.dark {
+  background-color: #333331;
+}
+.readerNavMenu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  z-index: 101;
+  background-color: #F9F9F7;
+}
+.headerNavContent .readerNavMenu.noHeader {
+  border-top: 1px solid #ccc;
+}
+.readerNavMenu .content {
+  position: relative;
+  box-sizing: border-box;
+  padding: 30px 10px 10px;
+  flex: 1;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  font-size: 14px;
+}
+.interface-hebrew.multiPanel .readerNavMenu .content {
+  padding-right: 40px;
+}
+.multiPanel .readerNavMenu .content {
+  padding: 30px 30px 70px 30px;
+}
+.multiPanel .readerNavMenu .content.hasFooter {
+  padding: 30px 0px 0px 0px;
+}
+.multiPanel .readerNavMenu.noHeader .content {
+  padding-top: 70px;
+}
+.multiPanel .readerNavMenu.compare .content {
+  padding-top: 80px;
+}
+.readerNavMenu .content .contentInner {
+  max-width: 660px;
+  margin: 0 auto;
+}
+.readerNavTop {
+  /*position: absolute;*/
+  width: 100%;
+  background-color: #F9F9F7;
+  border-bottom: 1px solid #E2E2E1;
+  box-sizing: border-box;
+  height: 58px;
+  /*direction: ltr;*/
+  z-index: 1;
+  padding: 5px 30px 0 30px;
+  vertical-align: middle;
+  line-height: 58px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.readerNavTop .readerNavTopStart {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.singlePanel .readerNavTop {
+  padding: 0 10px;
+}
+.readerNavTop.colorLineOnly {
+  height: auto;
+  border-bottom: none;
+  padding: 0;
+}
+.readerPanel .readerNavTop h2 {
+  margin: 0px;
+  font-weight: 400;
+  color: black;
+}
+.readerNavTop.search {
+}
+.readerNavMenu .readerSearch {
+  margin: 0;
+  width: 60%;
+  box-sizing: border-box;
+  border: none;
+  background-color: inherit;
+  font-size: 18px;
+  font-family: "adobe-garamond-pro", Georgia;
+  height: 48px;
+}
+.readerNavMenu .readerSearch:focus {
+  outline: 0;
+}
+
+.readerNavTop .readerNavMenuSearchButton,
+.readerNavTop .readerNavMenuCloseButton,
+.readerNavTop .readerNavMenuMenuButton,
+.readerNavTop .readerOptions {
+  text-align: left;
+  box-sizing: border-box;
+  color: #BFBFBF;
+  float: left;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.readerNavMenuCloseButton:hover {
+  text-decoration: none;
+}
+.readerNavTop .readerNavMenuCloseButton {
+  display: block;
+  font-size: 46px;
+  padding: 0;
+  margin-top: -6px;
+}
+.readerNavMenuCloseButton:hover {
+  text-decoration: none;
+}
+.readerNavTop .readerNavMenuSearchButton {
+}
+.readerNavTop .readerNavMenuCloseButton .fa {
+  font-size: 20px;
+}
+.readerNavTop .readerOptions {
+  float: right;
+  text-align: right;
+  display: flex;
+  align-items: center;
+}
+.sefariaLogo img {
+  width: 110px;
+}
+.readerNavTop .sefariaLogo img {
+  vertical-align: middle;
+}
+.readerNavTop .searchBox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.readerNavTop .searchBox .readerNavMenuSearchButton {
+  margin: 0 10px;
+}
+.readerNavTop .searchBox .readerSearch {
+  flex: 1;
+}
+.readerNavMenu h1 {
+  text-align: center;
+  color: #333;
+  height: 70px;
+  position: relative;
+  font-size: 26px;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  margin: 0 0 10px 0;
+}
+h1 .languageToggle {
+  position: absolute;
+  right: 0;
+  color: #ccc;
+  display: block;
+  width: 38px;
+  height: 32px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  line-height: 34px;
+  cursor: pointer;
+}
+h1 div.languageToggle .en {
+  font-family: "Frank Ruehl Libre", "Taamey Frank", "Times New Roman", serif;
+  font-weight: normal;
+}
+h1 .languageToggle .he {
+  font-family: "adobe-garamond-pro", Georgia, serif;
+  font-size: 22px;
+}
+.readerNavMenu h1 .int-en {
+  font-family: "adobe-garamond-pro", Georgia, serif;
+}
+.readerNavMenu h1 .int-he {
+  font-family: "Frank Ruehl Libre", "Taamey Frank", "Times New Roman", serif;
+}
+@media (max-width: 450px) {
+  .readerNavMenu.home .tagline {
+    margin-top: 29px;
+    height: 60px;
+  }
+  .readerNavMenu .tagline .en {
+    font-size: 19px;
+  }
+  .readerNavMenu .tagline .he {
+    font-size: 20px;
+  }
+}
+.readerNavMenu .navToggles {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: -10px;
+}
+.readerNavMenu .navToggles .navTogglesDivider {
+  color: #ccc;
+}
+.readerNavMenu .navToggle {
+  margin: 0 10px;
+  display: inline-block;
+  text-align: right;
+  text-transform: uppercase;
+  color: #999;
+  font-size: 11px;
+  font-weight: lighter;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.readerNavMenu .navToggle.second {
+  text-align: left;
+}
+.readerNavMenu .navToggle.active {
+  color: black;
+}
+.readerPanel h2, .readerPanel h3 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 200;
+  color: #999;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  height: 16px;
+  line-height: 16px;
+}
+.readerPanel h2 .en, .readerPanel h3 .en {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.readerPanel h2 .he, .readerPanel h3 .he {
+  font-family: "Heebo", sans-serif;
+}
+.readerNavSection h2 {
+  font-size: 13px;
+  font-weight: normal;
+  margin-bottom: 24px;
+}
+.readerNavSection {
+  margin-bottom: 44px;
+}
+a.recentItem,
+a.resourcesLink {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+.readerNavCategories {
+  width: 100%;
+}
+.readerNavCategories .threeBox td {
+}
+.readerNavCategories a {
+  color: #333;
+}
+.readerNavCategories a:hover {
+  text-decoration: none;
+}
+.readerNavCategory {
+  background-color: white;
+  text-transform: uppercase;
+  font-family: "adobe-garamond-pro", Georgia;
+  text-align: center;
+  font-size: 15px;
+  padding: 0 10px;
+  margin: 0;
+  cursor: pointer;
+  border-top: 4px solid transparent;
+  letter-spacing: 1px;
+  height: 46px;
+  line-height: 46px;
+  display: block;
+}
+a.readerNavCategory {
+  color: #333;
+}
+@media (max-width: 450px) {
+  .readerNavCategory {
+    margin: 2px;
+    font-size: 13px;
+  }
+}
+.readerNavMenu .readerNavMore img {
+  height: 10px;
+  width: 10px;
+  opacity: 0.43;
+}
+.bilingual .readerNavCategory .he {
+  display: none;
+}
+.bilingual .readerNavMenu .he {
+  display: none;
+}
+.readerNavCalendar {
+  margin-bottom: 30px;
+  margin-top: -8px;
+}
+.blockLink,
+.readerNavMenu .resourcesLink {
+  display: inline-block;
+  color: black;
+  background-color: white;
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+  border-top: 4px solid transparent;
+  width: 100%;
+  cursor: pointer;
+  height: 46px;
+  vertical-align: middle;
+  margin: 0;
+  box-sizing: border-box;
+  padding:  8px 8px;
+}
+.blockLink:hover {
+  color: #333;
+}
+.blockLink + .blockLink {
+  margin: 5px 0;
+}
+.blockLink img {
+  margin: 0 8px;
+  height: 16px;
+  width: 16px;
+  opacity: 0.4;
+  vertical-align: -3px;
+}
+.gridBox {
+  table-layout: fixed;
+}
+.gridBox td {
+  border: 3px solid transparent;
+}
+.english .gridBox td:first-child {
+  border-left: 0;
+}
+.english .gridBox td:last-child {
+  border-right: 0;
+}
+.hebrew .gridBox td:first-child {
+  border-right: 0;
+}
+.hebrew .gridBox td:last-child {
+  border-left: 0;
+}
+.readerNavMenu .resourcesLink .en {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.readerNavMenu .resourcesLink .he {
+  font-family: "Heebo", sans-serif;
+}
+.readerNavMenu .resourcesLink .fa {
+  margin: 0 6px;
+  color: #999;
+}
+.readerNavMenu .resourcesLink img {
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+  margin: 0px 5px;
+  position: relative;
+  top: 2px;
+}
+.readerNavMenu .siteLinks {
+  margin: 20px 0 50px;
+  text-align: center;
+}
+.readerNavMenu .siteLinks .siteLink {
+  color: #999;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 0 8px;
+  font-size: 12px;
+}
+.readerNavMenu .siteLinks .siteLink .en {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.readerNavMenu .siteLinks .siteLink .he {
+  font-family: "Heebo", sans-serif;
+}
+.readerNavMenu .siteLink .fa {
+  margin: 0 4px;
+}
+.readerNavMenu .divider {
+  color: #ccc;
+}
+.readerNavCategoryMenu {
+  height: 100%;
+}
+.readerNavCategoryMenu .content {
+  padding: 100px 10px 10px;
+}
+.readerNavCategoryMenu .content .category,
+.readerNavCategoryMenu .content .gridBox {
+  margin-bottom: 30px;
+}
+.readerNavCategoryMenu .categoryAttribution {
+  color: #999;
+  text-align: center;
+  font-size: 20px;
+  font-style: italic;
+  margin: 16px 0 30px;
+}
+.readerNavCategoryMenu .categoryAttribution .he {
+  font-style: normal;
+}
+.readerNavMenu .blockLink,
+.readerNavMenu .catLink,
+.readerNavMenu .navButton,
+.readerTextTableOfContents .refLink {
+  display: block;
+  margin: 0px;
+  padding: 10px 8px;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: white;
+  cursor: pointer;
+  vertical-align: middle;
+  text-align: center;
+  unicode-bidi: plaintext;
+}
+@media (max-width: 450px) {
+  .readerNavMenu .refLink,
+  .readerNavMenu .catLink,
+  .readerNavMenu .navButton,
+  .readerTextTableOfContents .refLink {
+    font-size: 14px;
+  }
+}
+.readerNavMenu .readerNavCategoryMenu td,
+.readerSheetsNav .gridBox td {
+  background-color: white;
+  border: 3px solid #F9F9F7;
+}
+
+.readerSheetsNav .navButton:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 450px) {
+  .readerNavMenu .readerNavCategoryMenu td,
+  .readerSheetsNav .gridBox td {
+    border: 4px solid #F9F9F7;
+  }
+}
+.readerNavMenu .readerNavCategoryMenu .refLink,
+.readerNavMenu .readerNavCategoryMenu .catLink {
+  width: 100%;
+  height: 100%;
+}
+.readerNavMenu .readerNavCategoryMenu .refLink.incomplete {
+  opacity: 0.7;
+}
+.categoryColorLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  z-index: 101;
+}
+.readerApp.interface-hebrew .readerNavMenu.noLangToggleInHebrew .en {
+  display: none;
+}
+.readerApp.interface-hebrew .readerNavMenu.noLangToggleInHebrew .he {
+  display: inline;
+}
+.interface-hebrew .readerPanel.english .noLangToggleInHebrew .readerNavSection,
+.interface-hebrew .readerPanel.english .readerNavMenu.noLangToggleInHebrew .gridBox {
+  direction: rtl;
+}
+.interface-hebrew .english .noLangToggleInHebrew .gridBox td:first-child {
+  border-right: 0;
+  border-left: 3px solid transparent;
+}
+.interface-hebrew .english .noLangToggleInHebrew .gridBox td:last-child {
+  border-left: 0;
+  border-right: 3px solid transparent;
+}
+.bilingual .readerTextTableOfContents .he {
+  display: none;
+}
+.readerTextTableOfContents .readerTextToc {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.readerTextTableOfContents .readerTextToc .en {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.readerTextTableOfContents .readerTextToc .he {
+  font-family: "Heebo", sans-serif;
+}
+.readerTextTableOfContents .categoryAttribution {
+  color: #666;
+  text-align: center;
+  font-size: 24px;
+  font-style: italic;
+  margin: 10px 0 28px;
+}
+.readerTextTableOfContents .categoryAttribution .he {
+  font-style: normal;
+}
+.readerTextTableOfContents .tocTop {
+  padding-bottom: 15px;
+}
+.readerTextTableOfContents .tocCategory {
+  color:#999;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.readerTextTableOfContents .tocTitle {
+  text-align: center;
+  font-size: 28px;
+  line-height: 1.3;
+}
+.readerTextTableOfContents .currentSection {
+  font-size: 17px;
+  color: #999;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  margin-top: 6px;
+  letter-spacing: 1px;
+}
+.readerTextTableOfContents .currentSection .he {
+  font-family: "Heebo", sans-serif;
+}
+.readerTextTableOfContents .tocDetails {
+  margin-top: 30px;
+  color: #999;
+  font-style: italic;
+}
+.readerTextTableOfContents .currentVersionBox .versionSelect {
+  width: 80%;
+  max-width: 300px;
+  margin: 20px auto 5px;
+}
+.readerTextTableOfContents .tocDetails a {
+  color: #999;
+}
+.readerTextTableOfContents .tocDetail {
+  margin-bottom: 4px;
+}
+.readerTextTableOfContents .tocDetail .int-en {
+  font-family: "adobe-garamond-pro", Georgia, serif;
+}
+.readerTextTableOfContents .tocDetail .int-he {
+  font-family: "Frank Ruehl Libre", "Taamey Frank", "Times New Roman", serif;
+}
+.readerTextTableOfContents .tocDetails .description {
+  margin: 6px 0 16px;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.readerTextTableOfContents .tocDetails .description .readMoreText {
+  display: block;
+  text-align: center;
+}
+.readerTextTableOfContents .tocDetails .description .readMoreLink {
+  font-style: italic;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  margin: 0 5px;
+}
+.readerTextTableOfContents .currentVersionBox {
+  margin-bottom: 18px;
+}
+.readerTextTableOfContents .currentVersionBox .versionBlock {
+  margin: 0;
+}
+.readerTextTableOfContents .moderatorSection {
+  margin-top: 20px;
+}
+.readerTextTableOfContents .moderatorSectionExpand {
+  display: inline;
+  cursor: pointer;
+  color: #666;
+  margin: 7px 6px 0px;
+  font-size: 14px;
+  position: absolute;
+}
+.interface-hebrew .readerTextTableOfContents .moderatorSectionExpand {
+  margin: 7px 18px 0px;
+}
+.readerTextTableOfContents .moderatorSectionExpand:hover {
+  text-decoration: underline;
+}
+.readerTextTableOfContents .moderatorSection .button {
+  padding: 12px 16px;
+  font-size: 13px;
+}
+.readerTextTableOfContents .moderatorSection .moderatorSectionMessage {
+  margin-top: 20px;
+  font-size: 18px;
+}
+.readerTextTableOfContents .moderatorSection .button .fa {
+  color: #999;
+  margin-right: 4px;
+}
+.readerTextTableOfContents .versionEditForm {
+  text-align: left;
+  background-color: #ddd;
+  padding: 10px;
+  width: 100%;
+}
+.readerTextTableOfContents .versionEditForm label {
+  display: inline-block;
+  padding: 10px 10px 0 0;
+}
+.readerTextTableOfContents .versionEditForm label#versionNotes_label {
+  display: block;
+}
+.readerTextTableOfContents .versionEditForm #versionTitle,
+.readerTextTableOfContents .versionEditForm #versionSource,
+.readerTextTableOfContents .versionEditForm #versionNotes
+ {
+  width: 98%;
+}
+.readerTextTableOfContents .versionEditForm #priority {
+  width: 25px;
+}
+.readerTextTableOfContents .versionEditForm #digitzedBySefaria {
+  margin-right: 10px;
+}
+.readerTextTableOfContents .versionEditForm #save_button,
+.readerTextTableOfContents .versionEditForm #delete_button {
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  background: #212E50;
+  padding: 4px 10px;
+  border-radius: 3px;
+  margin: 10px auto 0;
+  width: 60px;
+}
+.readerTextTableOfContents .versionEditForm #delete_button {
+  float: right;
+  background: white;
+  color: #999;
+  border: 1px solid #999;
+  width: 100px;
+  margin: 0;
+}
+.readerTextTableOfContents .versionTitle .fa,
+.readerTextTableOfContents .versionEditForm .fa {
+  font-size: 10px;
+  color: #666;
+  vertical-align: super;
+  margin-left: 3px;
+  cursor: pointer;
+}
+.interface-hebrew .readerTextTableOfContents .versionTitle .fa,
+.interface-hebrew .readerTextTableOfContents .versionEditForm .fa {
+  margin: 0 3px 0 0 ;
+}
+.readerTextTableOfContents .versionTitle .error {
+  color: red;
+}
+.readerTextTableOfContents .content {
+  padding: 30px 10px 10px;
+  box-sizing: border-box;
+  text-align: center;
+  height: 100%;
+}
+.readerTextTableOfContents .content .sectionLink {
+  display: inline-block;
+  height: 38px;
+  min-width: 38px;
+  line-height: 38px;
+  vertical-align: middle;
+  font-size: 13px;
+  font-weight: lighter;
+  margin: 1px;
+  text-align: center;
+  background-color: white;
+  color: #666;
+  cursor: pointer;
+  padding: 0px 6px;
+  box-sizing: border-box;
+}
+.readerTextTableOfContents .content .sectionLink .en {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.readerTextTableOfContents .content .sectionLink  .he {
+  font-family: "Heebo", sans-serif;
+}
+.interface-hebrew .readerTextTableOfContents .content .structToggles{
+  direction: rtl;
+}
+.interface-english .readerTextTableOfContents .content .structToggles{
+  direction: ltr;
+}
+.readerTextTableOfContents .content .structToggles {
+  margin-bottom: 40px;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.readerTextTableOfContents .content .structTogglesInner {
+  display: table-row;
+}
+.readerTextTableOfContents .content .structTogglesInner + .structTogglesInner > .altStructToggleBox {
+  padding-top: 6px;
+}
+.readerTextTableOfContents .content .structToggles .en {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.readerTextTableOfContents .content .structToggles .he {
+  font-family: "Heebo", sans-serif;
+}
+.readerTextTableOfContents .structToggles .altStructToggleBox {
+  display: table-cell;
+  height: 37px;
+}
+.altStructToggleBox a, .altStructToggleBox a:hover, .altStructToggleBox a:visited, .altStructToggleBox a:link, .altStructToggleBox a:active {
+  text-decoration: none;
+}
+
+.readerTextTableOfContents .structToggles .altStructToggle {
+  display: block;
+  padding: 8px;
+  color: #999;
+  cursor: pointer;
+  font-size: 13px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #CCC;
+}
+.readerTextTableOfContents .structToggles .altStructToggle.active {
+  color: black;
+  border-bottom: 4px solid #CCC;
+}
+.readerTextTableOfContents .structToggles .toggleDivider {
+  color: #ccc;
+  margin: 0 8px;
+}
+.readerTextTableOfContents .content .sectionName {
+  display: none;
+}
+.readerTextTableOfContents .content .tocSection > .sectionName {
+  font-size: 12px;
+  margin: 0 3px 4px;
+  color: #666;
+  display: block;
+}
+.readerTextTableOfContents .content .tocContent {
+  padding: 30px 0 40px;
+  text-align: left;
+}
+.readerTextTableOfContents.narrowPanel .tocContent {
+  padding: 0 0 40px;
+}
+.readerTextTableOfContents .content .tocSection {
+  margin-bottom: 22px;
+  display: block;
+  text-align: left;
+}
+.readerTextTableOfContents .content .tocSection.noSubLevels{
+  display: none;
+}
+.readerTextTableOfContents .content .schema-node-contents {
+  margin: 0 auto 22px;
+  display: block;
+  width: 100%;
+}
+.readerTextTableOfContents .content .schema-node-title {
+  color: black;
+  font-size: 16px;
+  display: inline-block;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.readerTextTableOfContents .content .schema-node-title .he {
+  font-family: "Heebo", sans-serif;
+}
+.readerTextTableOfContents .content .schema-node-toc {
+  display: block;
+}
+.readerTextTableOfContents .content .schema-node-contents.closed {
+  display: none;
+}
+.readerTextTableOfContents .content .schema-node-toc .schema-node-contents.closed {
+  display: block;
+}
+.readerTextTableOfContents .content .schema-node-control {
+  margin: 0 4px;
+}
+.readerTextTableOfContents .content .tocLevel {
+  display: block;
+  margin: 0 auto;
+}
+.readerTextTableOfContents .content .tocContent > .tocLevel > .schema-node-toc {
+  margin: 10px 0;
+}
+.readerTextTableOfContents .schema-node-toc {
+  margin: 6px 20px;
+}
+.readerTextTableOfContents .content .schema-node-toc.linked:hover .schema-node-title {
+  text-decoration: underline;
+}
+.readerTextTableOfContents .altStruct .refLink {
+  width: 49%;
+  margin: 3px;
+  box-sizing: border-box;
+  display: inline-block;
+}
+@media (max-width: 450px) {
+  .readerTextTableOfContents .altStruct .refLink {
+    margin: 0.5%;
+  }
+}
+.hebrew .readerTextTableOfContents .content .tocSection,
+.hebrew .readerTextTableOfContents .content .tocContent,
+.english .readerTextTableOfContents.noLangToggleInHebrew .content .tocContent,
+.bilingual .readerTextTableOfContents.noLangToggleInHebrew .content .tocContent{
+  text-align: right;
+}
+.english .readerTextTableOfContents.noLangToggleInHebrew .content .tocContent,
+.bilingual .readerTextTableOfContents.noLangToggleInHebrew .content .tocContent{
+  direction: rtl;
+}
+.readerTextTableOfContents .versionsBox {
+  padding: 20px 0;
+}
+.readerTextTableOfContents .button.allVersionsButton {
+  color: #999;
+  text-transform: uppercase;
+  font-size: 15px;
+  padding: 12px 50px;
+  margin: 20px 0;
+}
+.readerTextTableOfContents .allVersionsButton.inactive {
+  background-color: transparent;
+}
+.readerTextTableOfContents .versionBlocks {
+  text-align: center;
+}
+.readerTextTableOfContents .versionBlocks .versionLanguageBlock {
+  padding-bottom: 30px;
+  clear: both;
+}
+.readerTextTableOfContents .versionBlocks .versionLanguageHeader {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  color: #999;
+  padding: 10px 0;
+}
+.readerTextTableOfContents .versionBlock {
+  padding: 0 30px;
+  margin: 25px 0;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.readerTextTableOfContents .versionBlock .versionTitle {
+  display: block;
+  font-size: 18px;
+  color: #333;
+}
+.readerTextTableOfContents .versionBlock a {
+  color: #999;
+}
+.readerTextTableOfContents .versionBlock .versionDetails {
+  display: inline-block;
+  font-size: 12px;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  color: #999;
+}
+.readerTextTableOfContents .versionBlock .versionDetails .separator {
+  margin: 0 3px;
+}
+.readerTextTableOfContents .versionBlocks .versionBlock .versionTitle:hover {
+  text-decoration: underline;
+}
+.readerTextTableOfContents .versionBlock .versionNotes {
+  padding-top: 4px;
+  color: #999;
+}
+.modTools {
+  width: 50%;
+  margin: 0 auto;
+}
+.modTools .modToolsSection {
+  clear: both;
+  padding: 50px;
+  border-top: 1px solid #ccc;
+}
+.readerTextTableOfContents .content .dlSection {
+  clear: both;
+  padding-top: 50px;
+  border-top: 1px solid #ccc;
+}
+.modTools .dlSectionTitle {
+    width: 60%;
+    margin: 0 auto;
+}
+.modTools .dlSectionTitle,
+.readerTextTableOfContents .content h2 {
+    text-transform: uppercase;
+    color: #999;
+    padding: 10px 0;
+    margin-bottom: 14px;
+}
+.modTools .dlVersionSelect {
+  display: block;
+}
+
+.modTools .dlVersionSelect,
+.readerTextTableOfContents .content .dlVersionSelect {
+    width: 60%;
+    margin: 10px auto;
+    background-color: white;
+    font-size: 14px;
+    height: 3em;
+    border-color: #ccc;
+    border-radius: 3px;
+    color: #333;
+    font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.modTools .versionDownloadButton,
+.readerTextTableOfContents .content .versionDownloadButton {
+    width: 60%;
+    margin: 10px auto;
+    background-color: white;
+    font-size: 14px;
+    height: 3em;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #ccc;
+    font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.modTools .versionDownloadButton .downloadButtonInner,
+.readerTextTableOfContents .content .versionDownloadButton .downloadButtonInner {
+    font-size: 16px;
+    padding: 10px;
+}
+.modTools .versionDownloadButton .he,
+.readerTextTableOfContents .content .versionDownloadButton .he {
+    font-family: "Heebo", sans-serif;
+    direction: rtl;
+    text-align: right;
+}
+.modTools a .versionDownloadButton,
+.readerTextTableOfContents .content a .versionDownloadButton {
+    border-color: #212E50;
+    background-color: #212E50;
+}
+.searchContentFrame h1 {
+  direction: ltr;
+  height: 40px;
+}
+.searchContentFrame h1.englishQuery {
+  font-size: 26px;
+}
+.searchContentFrame h1.hebrewQuery {
+  font-family: "Frank Ruehl Libre", "Taamey Frank", "Times New Roman", serif;
+  font-size: 30px;
+}
+.searchContent {
+  padding: 0 10px 100px;
+}
+.searchContent .searchTopMatter {
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  position: relative;
+}
+.searchContent .searchTopMatter.loading {
+  border-bottom: none;
+}
+.searchTopMatter .filterSortFlexbox {
+  display: flex;
+  justify-content: space-between;
+}
+.searchContent .searchStatusLine {
+  padding: 0 0 36px 0;
+  text-align: center;
+  font-size: 12px;
+  height: 64px;
+}
+.searchContent .type-button,
+.readerSheetsNav .type-button {
+  padding: 6px 14px;
+  margin: 5px;
+  border-radius: 12px;
+  border: 1px solid #DADADA;
+  display: inline-block;
+  font-size: 12px;
+  color: #999;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.searchContent .type-button .he,
+.readerSheetsNav .type-button .he {
+  font-family: "Heebo", sans-serif;
+}
+
+.searchContent .type-button.active,
+.readerSheetsNav .type-button.active {
+  color: #000;
+  background-color: white;
+}
+.searchContent .type-button-title,
+.searchContent .type-button-total,
+.readerSheetsNav .type-button-title{
+  display: inline-block;
+  padding: 2px;
+}
+.searchContent .results-count,
+.searchContent .searchStatusLine > .loadingMessage {
+  color: #999;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  letter-spacing: 1px;
+  padding-top: 5px;
+}
+.searchContent .searchFilterToggle {
+  color: #999;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-weight: lighter;
+}
+.searchContent .searchFilterToggle:hover {
+  text-decoration: underline;
+}
+.searchContent .searchFilterToggle .en {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.searchContent .searchFilterToggle .he {
+  font-family: "Heebo", sans-serif;
+}
+.searchContent .searchFilterToggle img {
+  opacity: 0.43;
+  padding: 0 5px;
+  height: 10px;
+  width: 10px;
+}
+.interface-hebrew .searchContent .searchFilterToggle i {
+  padding-left: 0;
+  padding-right: 5px;
+}
+.searchContent .searchFilterBoxes {
+    margin-top: 10px;
+    background: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 1;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    border: 1px solid #ccc;
+}
+
+.searchContent .searchFilterBoxes .searchFilterBoxRow {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.searchFilterBoxes.hidden{
+    display:none;
+}
+.searchContent .searchFilterBoxes li {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  display: block;
+  padding: 15px 0 15px 15px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.searchContent .searchFilterBoxRow li:hover {
+  background-color: #e0e0e0;
+}
+.interface-hebrew .searchContent .searchFilterBoxes li {
+  font-family: "Heebo", sans-serif;
+  padding: 10px 15px 10px 0;
+}
+.searchContent .searchFilterBoxes li input[type="checkbox"] {
+  display: none;
+}
+.searchContent .searchFilterBoxes li input[type="checkbox"] + label span {
+    margin: 0 13px;
+    display:inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: sub;
+    cursor:pointer;
+    background-image: url(/static/img/checkbox-unchecked.svg);
+    background-size: contain;
+}
+.searchContent .searchFilterBoxes li input[type="checkbox"]:checked + label span {
+    background-image: url(/static/img/checkbox-checked.svg);
+}
+.searchContent .searchFilterBoxes li input[type="checkbox"]:indeterminate + label span {
+    background-image: url(/static/img/checkbox-partially.svg);
+}
+.searchContent .searchFilterBoxes li .filter-title {
+  color: #333;
+}
+.searchContent .searchFilterBoxes li .filter-count {
+  color: #999;
+}
+.searchContent .searchFilterBoxes li .in-focus-arrow {
+  float: right;
+  padding-right: 20px;
+  color: #999;
+}
+.interface-hebrew .searchContent .searchFilterBoxes li .in-focus-arrow {
+  float: left;
+  padding-left: 20px;
+  padding-right: 0;
+}
+.searchFilterBoxes .searchFilterExactBox {
+  border-top: 1px solid #ccc;
+  padding: 5px 0px 5px 0;
+}
+.searchFilterExactBox.hidden {
+  display:none;
+}
+.searchContent .searchSortBox {
+    margin-top: 10px;
+    background: white;
+    width: auto;
+    position: absolute;
+    z-index: 1;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    border: 1px solid #ccc;
+}
+.interface-english .searchSortBox {
+  right: 0;
+}
+.interface-hebrew .searchSortBox {
+  left: 0;
+}
+.searchSortBox.hidden{
+    display:none;
+}
+.searchContent .searchSortBox table {
+  border-collapse: collapse;
+}
+.searchContent .searchSortBox tr {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  padding: 15px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.interface-hebrew .searchContent .searchSortBox tr {
+  font-family: "Heebo", sans-serif;
+}
+.searchContent .searchSortBox tr:hover {
+  background-color: #e0e0e0;
+}
+.searchContent .searchSortBox tr:first-child {
+  border-bottom: 1px solid #eee;
+}
+.searchContent .searchSortBox td:not(:first-child) {
+  padding: 15px 15px 15px 0;
+}
+.searchContent .searchSortBox td:first-child {
+  padding: 0 0 0 15px;
+}
+.interface-hebrew .searchContent .searchSortBox td:not(:first-child) {
+  padding: 15px 0 15px 15px;
+}
+.interface-hebrew .searchContent .searchSortBox td:first-child {
+  padding: 0 15px 0 0;
+}
+.searchContent .searchSortBox tr.unselected {
+  color: #aaa;
+}
+.searchSortBox tr .searchSortCheck {
+  width: 10px;
+  height: 10px;
+  padding-left: 0;
+  padding-right: 10px;
+}
+.interface-hebrew .searchSortBox tr .searchSortCheck {
+  padding-left: 10px;
+  padding-right: 0;
+}
+.searchSortBox tr.unselected .searchSortCheck {
+  display: none;
+}
+.searchContent .searchResultsOverlay {
+  opacity: 0.5;
+}
+.searchContent .searchFilterCategoryBox,
+.searchContent .searchFilterBookBox {
+  padding-top: 10px;
+  width: 50%;
+  height: 150px;
+  overflow-y: auto;
+}
+.interface-hebrew .searchContent .searchFilterCategoryBox,
+.interface-hebrew .searchContent .searchFilterBookBox {
+  /*float: right;*/
+}
+.searchContent .result {
+  border-bottom: thin solid #eee;
+  padding-bottom: 12px;
+}
+.searchContent .result a:hover {
+  text-decoration: none;
+}
+.searchContent .similar-results {
+  padding: 0 25px;
+}
+.searchContent .similar-results .result {
+  border-top: none;
+}
+.searchContent .result .result-title {
+  color: #999;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  font-size: 1.7em;
+  display: block;
+  padding: 20px 0 5px;
+}
+.searchContent .result .result-title:hover {
+  text-decoration: underline;
+}
+.readerPanel.english .searchContent .result .result-title .en,
+.readerPanel.hebrew .searchContent .result .result-title .he {
+  display: block;
+}
+.readerPanel.english .searchContent .text_result .snippet.he,
+.readerPanel.hebrew .searchContent .text_result .snippet.en,
+.bilingual .searchContent .text_result .snippet.he {
+  display: block;
+}
+.searchContent .text_result .snippet {
+  color: #333;
+  font-size: 2.3em;
+}
+.searchContent .sheet_result .snippet {
+  color: #999;
+  font-size: 1.6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4em;
+  max-height: 2.8em;
+}
+.searchContent .similar-results .result .result-title {
+  padding: 0 0 5px;
+}
+.searchContent .result .version {
+  color: #999;
+  font-weight: lighter;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  letter-spacing: 1px;
+  font-size: 11px;
+  margin: 8px 0;
+}
+.searchContent .result .similar-trigger-box {
+  color: #999;
+  font-weight: lighter;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 11px;
+  padding: 0;
+  cursor: pointer;
+  margin: 8px 0;
+}
+.searchContent .result .similar-trigger-box i {
+  padding: 0 5px;
+}
+
+.searchContent .sheet_result .owner_image {
+  height: 40px;
+  width: 40px;
+}
+
+.searchContent .sheet_result {
+  height: auto;
+  margin: 15px 0;
+}
+
+.searchContent .sheet_result .result_img_box {
+  width: 40px;
+  padding-right: 20px;
+  height: 100px;
+  float: left;
+  margin-top: 4px;
+}
+.searchContent .sheet_result .result_text_box {
+  height: 100px;
+}
+.searchContent .sheet_result .result_text_box a.owner_name {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  display: block;
+  color: #999;
+  text-decoration: none;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  font-size: 1.7em;
+}
+.searchContent .sheet_result .result_text_box a.result-title {
+  display: block;
+  color: #000;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-size: 1.7em;
+  padding: 0;
+  margin: 8px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4em;
+  max-height: 2.8em;
+}
+.readerNavMenu .content.sheetList {
+  padding: 80px 15px 15px;
+}
+.readerNavMenu .yourSheetsLink.navButton {
+  width: 98%;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.readerNavMenu .sheet {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 0px;
+  border-bottom: 1px solid #eee;
+  color: black;
+}
+.readerNavMenu .sheet:hover{
+  text-decoration: none;
+}
+.readerNavMenu .sheet:first-child {
+  padding-top: 0;
+}
+.readerNavMenu .sheet .sheetImg {
+  height: 40px;
+  width: 40px;
+  margin: 1px 0px 0px 0;
+  border-radius: 2px;
+}
+.readerNavMenu .sheet .sheetTextInfo{
+  display: flex;
+  justify-content: flex-start;
+}
+.readerNavMenu .sheet:hover .sheetTextInfo{
+  text-decoration: underline;
+}
+.readerNavMenu .sheet .sheetAuthTitle{
+  display: flex;
+  flex-flow: column;
+  margin: auto 14px;
+}
+.readerNavMenu .sheet .sheetAuthor {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  color: #999;
+  font-size: 14px;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+.readerNavMenu .sheet .sheetTitle{
+  overflow: hidden;
+  font-size: 16px;
+  unicode-bidi: plaintext;
+}
+.readerNavMenu .sheet .sheetViews{
+  color: #CCC;
+  font-size: 12px;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.readerNavMenu .sheet:hover .sheetViews{
+  display: inline-block ;
+  text-decoration: none;
+}
+.readerSheetsNav h2 .en {
+  display: inline;
+}
+.readerSheetsNav .tagsHeader {
+  margin: 50px 0 30px;
+  height: auto
+}
+.readerSheetsNav .tagsHeader .actionText {
+  display: block;
+  margin-top: 20px;
+  text-transform: none;
+}
+.readerSheetsNav .loadingMessage {
+  text-align: center;
+}
+.hebrew .readerSheetsNav {
+  direction: ltr;
+}
+.readerControls {
+  position: relative;
+  /* direction: ltr;*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  border-top: 4px solid transparent;
+  text-align: center;
+  z-index: 100;
+  height: 58px;
+  line-height: 54px;
+  border-bottom: 1px solid #ddd;
+  background-color: #F9F9F7;
+}
+.sepia .readerControls {
+  background-color: #F3F3F1;
+}
+.dark .readerControls {
+  background-color: #2D2D2B;
+  color: white;
+  border-color: #444;
+}
+.dark .readerControls .readerTextToc .readerTextTocBox {
+  color: white;
+}
+.readerControls.connectionsHeader.fullPanel  {
+  background-color: #EDEDED;
+}
+.readerControls.connectionsHeader {
+  background-color: #F3F3F2;
+}
+.connectionsPanelHeader .connectionsHeaderTitle {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: lighter;
+}
+.connectionsPanelHeader .connectionsHeaderTitle.active {
+  text-transform: none;
+  cursor: pointer;
+}
+.connectionsHeaderTitle .fa-chevron-left {
+  margin-right: 10px;
+}
+.connectionsHeaderTitle .fa-chevron-right {
+  margin-left: 10px;
+}
+.readerControls .readerControlsInner {
+  position: relative;
+  width: 700px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  max-width:  100%;
+  box-sizing: border-box;
+}
+.readerControls.connectionsHeader .readerControlsInner {
+  padding: 0 40px 0 40px;
+}
+.singlePanel .readerControls .readerControlsInner {
+  padding: 0 10px;
+}
+.readerControls .readerTextToc {
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.readerControls .readerTextToc a {
+  color: inherit;
+}
+.readerControls .readerTextToc a:hover {
+  text-decoration: none;
+}
+.readerControls.connectionsHeader .readerTextToc {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  text-transform: uppercase;
+  color: #999;
+  width: 100%;
+}
+.readerControls .readerTextToc.attributed .readerTextTocBox {
+  line-height: 1.2;
+}
+.readerControls .readerTextToc .categoryAttribution {
+  font-style: italic;
+  font-size: 15px;
+  color: #999;
+  margin: 0 2px;
+}
+.readerControls .readerTextToc .categoryAttribution .he {
+  font-style: normal;
+}
+
+.interface-english .leftButtons,
+.interface-hebrew .rightButtons {
+  text-align: left;
+}
+.interface-english .rightButtons,
+.interface-hebrew .leftButtons {
+  text-align: right;
+}
+/* icons need a little nudge in flipped hebrew mode */
+.interface-hebrew .rightButtons {
+  margin-left: -3px;
+}
+.interface-hebrew .leftButtons {
+  margin-right: 2px;
+}
+
+.leftButtons .readerNavMenuSearchButton,
+.leftButtons .readerNavMenuMenuButton,
+.leftButtons .readerNavMenuCloseButton,
+.rightButtons .readerOptions,
+.rightButtons .readerNavMenuCloseButton {
+  width: 40px;
+  height: 48px;
+  line-height: 48px;
+  color: #CCC;
+  font-size: 20px;
+  display: inline-block;
+  cursor: pointer;
+}
+.leftButtons .readerNavMenuMenuButton {
+  font-size: 22px;
+  margin-top: 6px;
+}
+.leftButtons .readerNavMenuCloseButton {
+  font-size: 44px;
+}
+.leftButtons .readerNavMenuSearchButton span,
+.rightButtons .readerOptions img,
+.leftButtons .readerNavMenuCloseButton span {
+  vertical-align: middle;
+}
+.readerControls .readerTextToc {
+  font-size: 17px;
+  box-sizing: border-box;
+  display: block;
+  height: 50px;
+}
+.readerTextTocHeader.readerTextToc {
+  font-size: 14px;
+}
+.hebrew .readerControls .readerTextToc {
+  direction: rtl;
+}
+.readerControls .readerTextToc .readerTextTocBox {
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  /*max-width: 70%;*/
+  vertical-align: middle;
+  color: #333;
+}
+.readerControls .readerTextToc .readerTextVersion {
+  font-style: italic;
+  color: #999;
+}
+.readerControls .readerTextToc .readerTextVersion .en{
+  unicode-bidi: bidi-override;
+}
+.readerControls .readerTextToc .fa-caret-down {
+  color: #ccc;
+  margin: 0 7px;
+  vertical-align: 0px;
+}
+.readerControls .readerTextToc .fa-caret-down.invisible {
+  visibility: hidden;
+}
+.bilingual .readerTextToc .he {
+  display: none;
+}
+.readerOptions img {
+  height: 16px;
+}
+.dark .readerOptions img {
+
+}
+.readerOptionsPanel {
+  position: absolute;
+  width: 100%;
+  top: 58px;
+  right: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  direction: ltr;
+  background: #f9f9f7;
+  border-bottom: 1px solid #ccc;
+  z-index: 103;
+}
+.readerOptionsPanelInner {
+  max-width: 660px;
+  margin: 0 auto;
+}
+.toggleSet {
+  display: inline-block;
+  width: 100%;
+  margin: 7px 0;
+  margin-left: 1px;
+}
+.toggleOption {
+  box-sizing: border-box;
+  text-align: center;
+  border: 1px solid #ccc;
+  margin-left: -1px;
+  padding: 4px;
+  height: 42px;
+  line-height: 34px;
+  background-color: white;
+  vertical-align: middle;
+}
+.toggleOption:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.toggleOption:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-right: 1px solid #999;
+}
+.toggleOption.on, .toggleOption:hover {
+  background-color: #eee;
+}
+.toggleSet.separated .toggleOption {
+  margin-right: 3%;
+  border-right: 1px solid #999;
+}
+.toggleSet.separated .toggleOption:last-child {
+  margin-right: 0;
+}
+.color .toggleOption {
+  border-radius: 5px;
+  height: 38px;
+}
+.color .toggleOption.on {
+  border-color: black;
+}
+.color .light, .color .light.on {
+  background-color: white;
+}
+.color .sepia, .color .sepia.on {
+  background-color: #f7f7f7;
+}
+.color .dark, .color .dark.on {
+  background-color: #333331;
+}
+.toggleOption {
+  font-size: 26px;
+  line-height: 34px;
+  vertical-align: middle;
+}
+.toggleSet .toggleOption .he,
+.toggleSet .toggleOption .en {
+  display: inline;
+}
+.toggleOption.bilingual {
+  font-size: 18px;
+}
+.toggleOption.segmented, .toggleOption.continuous {
+  font-size: 18px;
+}
+.toggleOption.smaller, .toggleOption.larger {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.toggleOption.smaller {
+  font-size: 12px;
+}
+.toggleOption.larger {
+  font-size: 22px;
+}
+.readerOptionsPanel .line {
+  margin: 20px 0;
+  border-top: 1px solid #ddd;
+}
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 102;
+  cursor: pointer;
+}
+.textRange.basetext {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1.8em;
+  line-height: 1.6;
+  text-align: justify;
+  background-color: inherit;
+  margin: 0 auto;
+  max-width: 700px;
+  position: relative;
+  padding: 0 30px;
+}
+.singlePanel .textRange.basetext {
+  padding: 0;
+}
+.narrowColumn .textRange.basetext {
+}
+.textRange.basetext .title {
+  padding: 24px 28px 24px;
+  color: #999;
+  text-align: center;
+  justify-content: center;
+  font-weight: lighter;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.dark .textRange.basetext .title {
+  color: #ccc;
+}
+.textRange.basetext .title .titleBox {
+  display: inline-block;
+  border-bottom: 4px solid #E6E5E6;
+  padding: 0 6px 3px;
+}
+.dark .textRange.basetext .title .titleBox {
+  border-bottom: 4px solid #666;
+}
+.bilingual .textRange.basetext .title .he {
+  display: none;
+}
+.interface-hebrew .readerPanel.english .textRange,
+.interface-hebrew .readerPanel.english .categoryFilterGroup,
+.interface-hebrew .readerPanel.bilingual .categoryFilterGroup,
+.interface-hebrew .readerPanel.english .tocContent,
+.interface-hebrew .readerPanel.bilingual .tocContent {
+  direction: ltr;
+}
+.interface-english .readerPanel.hebrew .textRange,
+.interface-english .readerPanel.hebrew .categoryFilterGroup,
+.interface-english .readerPanel.hebrew .tocContent{
+  direction: rtl;
+}
+.basetext .text {
+  padding: 30px 44px;
+  background-color: inherit;
+}
+.narrowColumn .basetext .text {
+  padding: 26px;
+}
+.singlePanel .basetext .text {
+  padding: 30px 34px;
+}
+.segment {
+  cursor: pointer;
+  display: block;
+  background-color: inherit;
+  margin-bottom: 14px;
+}
+.continuous .segment {
+  display: inline;
+  margin: 0;
+  padding: .3333em 0;
+}
+.continuous .clearFix {
+  display: none;
+}
+.segment > .he,
+.segment > .en {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.basetext .segment {
+  margin-bottom: 26px;
+}
+.bilingual .segment > .he,
+.bilingual .segment > .en {
+  display: block;
+}
+.bilingual .segment > .en {
+  text-align: left;
+}
+.bilingual .segment > .he {
+  text-align: right;
+}
+.stacked.bilingual .basetext .segment {
+  margin-bottom: 14px;
+  display: block;
+}
+.stacked.bilingual .segment > .en {
+  margin-top: 6px;
+  text-align: left;
+}
+.stacked.bilingual .basetext .segment > .en {
+  margin: 10px 0 20px;
+  color: #666;
+}
+.stacked.bilingual .segment.heOnly > .he,
+.stacked.bilingual .segment.enOnly > .en {
+  display: inline;
+}
+.heLeft.bilingual .basetext .text,
+.heRight.bilingual .basetext .text {
+  padding: 30px 0;
+}
+.heLeft.bilingual .segment > .en,
+.heLeft.bilingual .segment > .he,
+.heRight.bilingual .segment > .en,
+.heRight.bilingual .segment > .he {
+  width: 50%;
+  box-sizing: border-box;
+  display: block;
+}
+.heLeft.bilingual .segment > .en,
+.heRight.bilingual .segment > .he {
+  float: right;
+  padding-left: 20px;
+}
+.heRight.bilingual .segment > .en,
+.heLeft.bilingual .segment > .he {
+  float: left;
+  padding-right: 20px;
+}
+.basetext .segment:active,
+.basetext .segment:focus {
+  background-color: #f4f4f4;
+}
+.basetext .segment:active .segmentNumber,
+.basetext .segment:focus .segmentNumber,
+.basetext .segment:active .linkCount,
+.basetext .segment:focus .linkCount {
+  background-color: transparent;
+}
+.dark .basetext .segment:active,
+.dark .basetext .segment:focus {
+  background-color: #444;
+}
+.basetext .segment.highlight {
+  background-color: #E9E9E7;
+}
+.basetext .segment.highlight .segmentNumber,
+.basetext .segment.highlight .linkCount {
+  background-color: transparent;
+}
+.sepia .basetext .segment.highlight {
+  background-color: #E3E3E1;
+}
+.dark .basetext .segment.highlight {
+  background-color: #444;
+}
+.textRange {
+  line-height: 1.4;
+  font-size: 1.6em;
+}
+.textRange .textInner {
+  position: relative;
+}
+.textRange.lowlight .text {
+  color: #999;
+}
+.segment {
+}
+.segment.heOnly{
+  text-align: right;
+  direction: rtl;
+}
+.segment.enOnly{
+  text-align: left;
+  direction: ltr;
+}
+.segment.heOnly .en{
+  display: none;
+}
+.segment.enOnly .he{
+  display: none;
+}
+.segment.heOnly .he{
+  display: initial;
+}
+.segment.enOnly .en{
+  display: initial;
+}
+.segment .segmentNumber,
+.segment .linkCount,
+.textRange .numberLabel {
+  position: absolute;
+  background-color: inherit;
+  font-weight: lighter;
+  color: #ccc;
+  display: block;
+  width: 30px;
+  text-align: center;
+  -webkit-text-size-adjust: 100%;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+.segmentNumber .segmentNumberInner,
+.linkCount .linkCountDot {
+  display: inline-block;
+}
+.bilingual .segmentNumber .segmentNumberInner,
+.bilingual .linkCount .linkCountDot,
+.bilingual .numberLabel .numberLabelInner {
+  margin-top: 0;
+}
+.bilingual .segmentNumber .he,
+.bilingual .linkCount .he,
+.bilingual .numberLabel .he {
+  display: none;
+}
+.segment .segmentNumber,
+.segment .linkCount {
+  display: none;
+  line-height: 1.6;
+}
+.segment .segmentNumber .segmentNumberInner,
+.textRange .numberLabel .numberLabelInner {
+  font-size: 12px;
+  vertical-align: middle;
+}
+.segment .segmentNumber,
+.textRagnge .numberLabel {
+  color: #999;
+  top: 0;
+}
+.dark .segment .segmentNumber,
+.dark .textRagnge .numberLabel {
+  color: white;
+}
+.segment .linkCount {
+
+}
+.segment .linkCountDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 12px;
+  background-color: black;
+  vertical-align: middle;
+}
+.dark .segment .linkCount {
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}
+.readerPanel.english .segment .segmentNumber {
+  left: -48px;
+}
+.readerPanel.hebrew .segment .segmentNumber,
+.readerPanel.bilingual .segment .segmentNumber {
+  right: -46px;
+}
+.readerPanel.english .segment .linkCount {
+  right: -46px;
+}
+.readerPanel.hebrew .segment .linkCount,
+.readerPanel.bilingual .segment .linkCount {
+  left: -48px;
+}
+.readerPanel.heLeft.bilingual .segment .segmentNumber,
+.readerPanel.heRight.bilingual .segment .segmentNumber {
+  left: 50%;
+  margin-left: -15px;
+  right: auto;
+}
+.readerPanel.heLeft.bilingual .segment .linkCount,
+.readerPanel.heRight.bilingual .segment .linkCount {
+  visibility: hidden;
+}
+.singlePanel .readerPanel.english .segment .segmentNumber {
+  left: -30px;
+}
+.singlePanel .readerPanel.hebrew .segment .segmentNumber,
+.singlePanel .readerPanel.bilingual .segment .segmentNumber {
+  right: -28px;
+}
+.singlePanel .readerPanel.english .segment .linkCount {
+  right: -37px;
+}
+.singlePanel .readerPanel.hebrew .segment .linkCount,
+.singlePanel .readerPanel.bilingual .segment .linkCount {
+  left: -20px;
+}
+.segment .refLink {
+  font-size: .8em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  color: #333;
+}
+.refLink:hover {
+  text-decoration: underline;
+}
+.textRange .actionLinks {
+  text-align: right;
+}
+.textRange .actionLinks > span {
+  font-size: 13px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 0 7px;
+  cursor: pointer;
+  color: #aaa;
+}
+.textRange .actionLinks > span > img {
+  height: 13px;
+  width: 13px;
+  margin: 0 5px;
+  opacity: 0.3;
+  vertical-align: baseline;
+}
+.textRange .actionLinks > span > i {
+  margin: 0 5px;
+  font-size: 16px;
+  vertical-align: top;
+}
+.textRange .actionLinks .en {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", arial, sans-serif;
+}
+.textRange .actionLinks .he {
+  font-family: "Heebo", sans-serif;
+}
+/* Footnotes */
+.segment sup {
+  margin-left: .2em;
+  margin-right: .2em;
+  text-decoration: underline;
+}
+.segment sup.itag {
+  text-decoration: none;
+  font-family: "Heebo", "sans-serif";
+  font-size: 0.6em;
+  line-height: 1;
+  color: #4871bf;
+}
+.segment i.footnote {
+  display: none;
+  font-size: .8em;
+  margin-left: .5em;
+  margin-right: .5em;
+  color: #888;
+  font-style: normal;
+}
+.segment img {
+  max-width: 100%;
+}
+.connectionsPanelHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.singlePanel .connectionsPanelHeader {
+  justify-content: flex-start;
+  align-items: stretch;
+  height: 100%;
+}
+.interface-hebrew .connectionsPanelHeader {
+  direction: rtl;
+}
+.interface-english .connectionsPanelHeader {
+  direction: ltr;
+}
+.connectionsPanelHeader .rightButtons {
+  margin-top: -4px;
+}
+.connectionsPanelHeader .languageToggle,
+.connectionsHeader .readerNavMenuCloseButton.circledX{
+  height: 32px;
+  width: 30px;
+  text-align: center;
+  line-height: 32px;
+}
+.readerNavMenu.noHeader.compare .readerNavTop .readerNavMenuCloseButton.circledX{
+  height: 32px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  margin: 0 15px;
+}
+.connectionsPanelHeader .languageToggle {
+  margin: 0 15px;
+}
+.connectionsHeader .readerNavMenuCloseButton.circledX,
+.readerNavMenu.noHeader.compare .readerNavTop .readerNavMenuCloseButton.circledX{
+  width: 20px;
+}
+.connectionsHeader .readerNavMenuCloseButton.circledX img,
+.readerNavMenu.noHeader.compare .readerNavTop .readerNavMenuCloseButton.circledX img{
+  opacity: 0.2;
+  height: 20px;
+  width: 20px;
+  vertical-align: middle;
+}
+.connectionsPanelHeader .languageToggle img {
+  vertical-align: middle;
+}
+.connectionsPanel .flashMessage {
+  font-size: 18px;
+  color: #999;
+  margin-bottom: 30px;
+  text-align: left;
+}
+.interface-hebrew .connectionsPanel .flashMessage {
+  text-align: right;
+}
+.textList {
+  width: 100%;
+  height: 54%;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  text-align: justify;
+  margin: 0 auto;
+  background-color: #F9F9F7;
+}
+.sepia .textlist {
+  background-color: #F3F3F1;
+}
+.dark .textlist {
+  background-color: #333331;
+}
+.textList.fullPanel {
+  padding-top: 58px;
+  height: 100%;
+  box-sizing: border-box;
+}
+.textList .texts,
+.textList .fullFilterView {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.textList .fullFilterView .contentInner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.textList .texts .contentInner {
+  max-width: 660px;
+  margin: 0 auto;
+}
+.textList .texts {
+  padding: 30px 30px 80px 30px;
+}
+.textList.fullPanel .texts {
+  padding: 50px 40px 80px 40px;
+}
+.textListTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: inherit;
+  z-index: 1;
+}
+.textList.fullPanel .textListTop {
+  text-align: center;
+  height: 55px;
+}
+.dark .textList {
+  background-color: #333331;
+}
+.dark .textList .anchorText {
+  background-color: #333331;
+}
+.textList .heOnly {
+  display: block;
+}
+.textList.fullPanel .textListTop .leftButtons {
+  margin: 9px 0 0 10px;
+}
+.textList.fullPanel .textListTop .rightButtons {
+  margin: 9px 10px 0 0;
+}
+.gridBox {
+  width: 100%;
+  border-spacing: 0;
+  background-color: transparent;
+}
+.gridBox table {
+  width: 100%;
+  border-style: hidden;
+  border-collapse: collapse;
+}
+.gridBox td {
+  padding: 0;
+}
+@media (max-width: 450px) {
+  .gridBox td {
+    border: 2px solid transparent;
+  }
+}
+.twoBox td {
+  width: 50%;
+}
+.threeBox td {
+  width: 33.333333%;
+}
+.dark .filterSet td {
+  border-color: #555;
+}
+.filterSet td.empty {
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+}
+.topFilters {
+  text-transform: none;
+}
+.sepia .topFilters {
+  background-color: #F3F3F1;
+}
+.dark .topFilters {
+  background-color: #2D2D2B;
+  border-bottom: 1px solid #444;
+}
+.textList.fullPanel .topFilters {
+  margin: 0;
+  border-top: 8px solid transparent;
+  padding: 6px 22px 5px;
+  background-color: #EDEDED;
+}
+.topFilters .textFilter {
+  color: #999;
+  display: inline-block;
+  padding: 16px 8px;
+}
+.topFilters .textFilter.on {
+  color: black;
+}
+.dark .topFilters .textFilter {
+  color: #bbb;
+}
+.topFilters .textFilter > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+.textList.fullPanel .recentFilterSet {
+  margin: 0 0 12 0;
+}
+.textList.fullPanel .recentFilterSet .textFilter {
+  display: inline-block;
+  padding: 6px 14px;
+  margin: 5px;
+  border-radius: 12px;
+  border: 1px solid #DADADA;
+  background-color: transparent;
+}
+.english .textList.fullPanel .recentFilterSet .textFilter {
+  margin-left: 0;
+}
+.hebrew .textList.fullPanel .recentFilterSet .textFilter {
+  margin-right: 0;
+}
+.textList.fullPanel .recentFilterSet .textFilter.on {
+  background-color: white;
+}
+.topFiltersInner {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+.textList.fullPanel .topFiltersInner {
+  white-space: normal;
+}
+.showMoreFilters {
+  vertical-align: middle;
+  float: right;
+}
+.categoryFilter {
+  text-transform: uppercase;
+  padding: 17px 34px;
+  font-size: 17px;
+  cursor: pointer;
+  line-height: 18px;
+  color: #333;
+}
+.textFilter {
+  padding: 12px 34px;
+  font-size: 17px;
+  line-height: 1.2;
+  border-top: 1px solid #ccc;
+  display: block;
+  cursor: pointer;
+  color: #333;
+}
+.connectionsCount {
+  color: #999;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.categoryFilterGroup a:hover {
+  text-decoration: none;
+}
+.categoryFilterGroup.withBooks + .categoryFilterGroup {
+  margin-top: 30px;
+}
+.categoryFilter.on, .textFilter.on {
+  color: black;
+}
+.dark .categoryFilter.on, .dark .textFilter.on {
+  color: white;
+}
+.textFilter.lowlight {
+  color: #999;
+}
+.topFilters .textFilter.showMoreFilters {
+  color: #999;
+}
+.bilingual .textFilter .he,
+.bilingual .categoryFilter .he {
+  display: none;
+}
+.fullFilterView {
+  border-top: 1px solid #ddd;
+  background-color: #F9F9F7;
+  padding: 40px 20px;
+}
+.sepia .fullFilterView {
+  background-color: #F3F3F1;
+}
+.dark .fullFilterView {
+  background-color: #2D2D2B;
+  border-color: #444;
+}
+.fullFilterView td {
+  background-color: white;
+  border: 2px solid #F9F9F7;
+}
+.fullFilterView td.empty {
+  background-color: transparent;
+}
+.dark .fullFilterView td {
+  background-color: #333331;
+  border-color: #2d2d2b;
+  color: white;
+}
+.fullFilterView .categoryFilter {
+  background-color: white;
+  margin-bottom: 1px;
+}
+.fullFilterView .categoryFilter.notClickable {
+  color: #999;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  background-color: transparent;
+  padding: 12px 12px 28px;
+  cursor: auto;
+}
+.dark .fullFilterView .categoryFilter {
+  background-color: #333;
+}
+.fullFilterView .categoryFilterGroup {
+  margin-bottom: 30px;
+}
+.showSelectedFilters {
+  background-color: #222F4F;
+  color: white;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin: 16px 0;
+}
+.textList .textListTop > .loadingMessage,
+.textList .texts .contentInner > .loadingMessage {
+  padding: 22px 10px 0px;
+  color: #999;
+  font-size: 14px;
+  text-align: center;
+}
+.textList .textListTop > .loadingMessage {
+  position: relative;
+  top: 70px;
+}
+.textList .texts {
+  position: relative;
+  background-color: #F9F9F7;
+}
+.sepia .textList .texts {
+  background-color: #F9F9F7;
+}
+.dark .textList .texts {
+  background-color: #333331;
+}
+.textList .texts .textRange {
+  font-size: 1.8em;
+  padding: 16px 0;
+  margin: 12px 0px;
+  cursor: pointer;
+  position: relative;
+}
+.textListTextRangeBox {
+  border-bottom: 1px solid #eee;
+}
+.textList .texts .textRange .title {
+  color: #999;
+}
+.dark .textList .texts .textRange .title {
+  color: #ddd;
+}
+.textList.singlePanel .textListTextRangeBox:first-child {
+  margin-top: -30px;
+}
+.textRange .title {
+  display: flex;
+  justify-content: space-between;
+}
+.textRange .title .buttons {
+}
+.bilingual .textList .title .he {
+  display: none;
+}
+.textList .sheet,
+.textList .note {
+  padding: 0 0 24px 0;
+  display: flex;
+  flex-flow: column;
+}
+.textList .sheet + .sheet {
+  padding: 24px 0;
+  border-top: 1px solid #E6E5E6;
+}
+.textList .sheet .sheetInfo{
+  display: flex;
+  justify-content: space-between;
+}
+.textList .sheet .sheetAuthorImg,
+.textList .note .noteAuthorImg {
+  height: 26px;
+  width: 26px;
+  vertical-align: -8px;
+}
+.textList .sheet .sheetViews {
+  color: #999;
+  font-size: 12px;
+}
+.textList .sheet .sheetAuthor,
+.textList .note .noteAuthor {
+  color: #999;
+  font-size: 15px;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  margin: auto 14px;
+}
+.textList .sheet .sheetTitle {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 14px;
+  font-size: 17px;
+  font-style: italic;
+  text-align: left;
+  color: #333;
+}
+.textList .sheet .sheetTitle .sheetIcon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.4;
+  vertical-align: -1px;
+}
+.textList .sheet .sheetTitle .sheetTitleText{
+  margin: auto 6px;
+}
+.textList .sheet .sheetTags {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #666;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  text-align: left;
+}
+/*.interface-hebrew .textList .sheet .sheetTags {
+  text-align: right;
+}*/
+.textList .sheet .sheetTag {
+  color: inherit;
+  display: inline-block;
+  white-space: nowrap;
+}
+.textList .sheet .sheetTag .separator {
+  display: inline-block;
+  margin-right: 8px;
+}
+.textList .sheetList {
+  padding-top: 40px;
+}
+.textList .sheetList + .sheetList {
+  border-top: 1px solid #E6E5E6;
+}
+.textList .note .noteAuthorInfo {
+  margin-bottom: 14px;
+}
+.textList .note .noteTitle {
+  font-weight: bold;
+}
+.textList .note .noteTitle,
+.textList .note .noteText {
+  font-size: 16px;
+}
+.textRange .numberLabel {
+  position: absolute;
+  top: 14px;
+}
+.english .textRange .numberLabel {
+  left: -24px;
+}
+.english .textRange .numberLabel.itag {
+  right: -30px;
+  left: initial;
+}
+.hebrew .textRange .numberLabel,
+.bilingual .textRange .numberLabel  {
+  right: -30px;
+}
+.multiPanel .textRange .numberLabel{
+  display: none;
+}
+.multiPanel .textRange .numberLabel.itag{
+  display: block;
+  color: #4871bf;
+}
+.textRange.lowlight .numberLabel {
+  color: #999;
+}
+.readerPanel.bilingual .connectionsPanel .he {
+  display: none;
+}
+.textListTextRangeBox {
+  position: relative;
+}
+.textListTextRangeBox:hover .moderatorLinkOptions {
+  display: block;
+}
+.moderatorLinkOptions {
+  display: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #999;
+  letter-spacing: 1px;
+  margin: -20px 0 10px;
+}
+.interface-hebrew .moderatorLinkOptions {
+  left: auto;
+  right: 0;
+}
+.moderatorLinkOptions > div:hover {
+  text-decoration: underline;
+}
+.toolsMessage {
+  margin: 130px 0;
+  text-align: center;
+  font-size: 18px;
+}
+.toolsButton {
+  display: flex;
+  justify-content: flex-start;
+  color: #333;
+  border-top: 1px solid #CCC;
+  cursor: pointer;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 20px 0 20px 0;
+}
+.toolsButton:hover {
+  text-decoration: none;
+  color: inherit;
+}
+.toolsButton .en {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.toolsButton .toolsButtonIcon {
+  color: #ccc;
+  font-size: 22px;
+}
+.toolsButton img.toolsButtonIcon {
+  width: 22px;
+  height: 22px;
+  opacity: 0.2;
+  vertical-align: middle;
+}
+.toolsButton .toolsButtonText{
+  margin: 0 15px;
+}
+.shareInput {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 7px;
+  border: 1px solid #F7F7F7;
+  box-shadow: none;
+  font-size: 18px;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  color: #999;
+  padding: 20px 26px;
+  margin-bottom: 30px;
+}
+.addToSourceSheetBox {
+  position: relative;
+}
+.addToSourceSheetBox input {
+  padding: 13px 12px;
+  margin: 0;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 4px;
+  box-shadow: none;
+  border: 1px solid #E9E9E9;
+  width: 60%;
+  box-sizing: border-box;
+}
+.addToSourceSheetBox .button {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+.addToSourceSheetBox .button.small {
+  width: 37%;
+  box-sizing: border-box;
+  padding: 12px;
+  margin: 0;
+  float: right;
+}
+.addToSourceSheetBox .newSheet {
+  border-top: 1px solid #E9E9E9;
+  padding: 14px 22px;
+}
+.confirmAddToSheet {
+  text-align: center;
+  background-color: #F9F9F7;
+}
+.confirmAddToSheet .message {
+  font-size: 18px;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+.confirmAddToSheet .button {
+  width: 100%;
+}
+.connectionsPanel .allSheetsLink,
+.connectionsPanel .allNotesLink {
+  display: block;
+  margin-top: 10px;
+}
+.interface-hebrew .allNotesLinks {
+  text-align: left;
+}
+.noteList + .noteList {
+  border-top: 1px solid #ccc;
+}
+.connectionsPanel .loadingMessage {
+  margin-top: 40px;
+}
+.connectionsPanel textarea.noteText {
+  width: 100%;
+  min-height: 100px;
+  border: none;
+  border-radius: 4px;
+  padding: 20px 25px;
+  box-sizing: border-box;
+  font-size: 18px;
+  font-family: "adobe-garamond-pro", Georgia, serif;
+  margin-bottom: 10px
+}
+.connectionsPanel .noteSharingToggle {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+.connectionsPanel .notePrivateButton,
+.connectionsPanel .notePublicButton {
+  width: 50%;
+  display: inline-block;
+  text-align: center;
+  color: #CCC;
+  cursor: pointer;
+  padding: 16px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  box-sizing: border-box;
+}
+.connectionsPanel .notePrivateButton.active,
+.connectionsPanel .notePublicButton.active {
+  background-color: white;
+  color: #666;
+}
+.connectionsPanel .notePrivateButton {
+  border-right: 1px solid #ccc;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.hebrew .connectionsPanel .notePrivateButton {
+  border-left: 1px solid #ccc;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-right: none;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.connectionsPanel .line {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  margin: 40px 0;
+}
+.connectionsPanel .deleteNote {
+  text-align: center;
+  padding: 18px 0;
+  color: #999;
+  font-size: 15px;
+  cursor: pointer;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.connectionsPanel.textList .note {
+  padding: 30px 0;
+  position: relative;
+}
+.connectionsPanel.textList .note {
+  border-top: 1px solid #E6E5E6;
+}
+.connectionsPanel.textList .note:first-child {
+  border-top: none;
+}
+.connectionsPanel .noteButtons {
+  position: absolute;
+  top: 30px;
+  left: -32px;
+}
+.interface-hebrew .connectionsPanel .noteButtons {
+  left: auto;
+  right: -32px;
+}
+.connectionsPanel .editNoteButton {
+  visibility: hidden;
+}
+.connectionsPanel .note:hover .editNoteButton {
+  visibility: visible;
+}
+.connectionsPanel .noteButtons .fa {
+  cursor: pointer;
+  color: #C6C6C6;
+  font-size: 20px;
+  margin: 0 8px;
+}
+.addConnectionBox {
+  font-size: 18px;
+  text-align: center;
+}
+.addConnectionSummary {
+  margin-bottom: 20px;
+}
+.loginPrompt {
+  text-align: center;
+}
+.loginPrompt .loginPromptMessage {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.loginPrompt .button {
+  width: auto;
+  margin: 0 6px;
+}
+.notificationsPanel .content {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 17px;
+  color: #666;
+}
+.systemPanel.readerNavMenu h1 {
+  color: #333;
+  position: relative;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  text-align: center;
+  font-size: 26px;
+  margin: 0 0 80px 0;
+  height: auto;
+}
+.systemPanel.readerNavMenu h1 .en {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.systemPanel.readerNavMenu h1 .he {
+  font-family: "Heebo", sans-serif;
+}
+.systemPanel.readerNavMenu h1 .button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  line-height: 26px;
+}
+.notificationsPanel a {
+  color: #333;
+}
+.notificationsList {
+  margin-bottom: 100px;
+}
+.notificationsList .notification {
+  width: auto;
+  border-bottom: 1px solid #ccc;
+  border-top: none;
+  padding: 27px 15px;
+  margin: 0;
+}
+.notificationsList .added-description {
+  padding: 5px 0 0;
+}
+.notificationsPanel .notification .date {
+  color: #ccc;
+  font-size: 13px;
+  margin-top: 8px;
+}
+.notificationsList .int-he {
+  font-size: inherit;
+}
+.notificationsList .notification a{
+  unicode-bidi: plaintext;
+}
+.notification-message-link {
+  display: inline-block;
+  padding: 0 5px;
+}
+.globalUpdateForm {
+  padding: 15px;
+  background-color: #ddd;
+}
+.globalUpdateForm .error {
+  color: red;
+  font-size: 90%;
+  display: inline-block;
+  padding: 0 10px;
+}
+.globalUpdateForm input[type="text"] {
+  padding: 5px;
+  margin: 8px 0;
+}
+
+.globalUpdateForm input[type="radio"] {
+  padding: 5px;
+  margin: 8px;
+}
+.delete-update-button {
+  display: inline-block;
+  color: red;
+  padding: 0 10px;
+  font-size: 75%;
+  cursor: pointer;
+}
+.sefariaLogo {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+#s2Loading {
+  text-align: center;
+  background-color: #F9F9F7;
+  height: 100%;
+  color: #666;
+}
+#s2Loading .sefariaLogo {
+  margin-top: 18px;
+  margin-bottom: 2px;
+}
+#s2Loading .loadingMessage {
+  position: absolute;
+  width: 100%;
+  top: 32%;
+  font-size: 18px;
+}
+#s2Loading img {
+  width: 150px;
+  height: 42px;
+}
+.emptyDesktop {
+  margin-top: 200px;
+  text-align: center;
+  color: #999;
+}
+.button {
+  display: inline-block;
+  color: white;
+  background-color: #212E50;
+  border: 1px solid #212E50;
+  border-radius: 4px;
+  padding: 16px 24px;
+  margin: 0 2px 6px 2px;
+  cursor: pointer;
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  box-sizing: border-box;
+  line-height: 1;
+  text-align: center;
+}
+a.button {
+  color: white;
+}
+.button:hover {
+  color: white;
+  text-decoration: none;
+}
+.button.white {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+}
+a.button.white {
+  color: #333;
+}
+.button.white:hover {
+
+}
+.button.transparent {
+  color: #666;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+.button.transparent.bordered {
+  border: 1px solid #CCC;
+}
+.button.fillWidth {
+  width: 100%;
+  text-align: center;
+  display: block;
+  margin: 10px 0;
+}
+.button.squareBorder {
+  border-radius: 0;
+}
+a .button:hover {
+  text-decoration: none;
+}
+#backToS1 {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  top: 20px;
+  left: 40px;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  margin: -30px 0 50px;
+}
+#backToS1:hover {
+  text-decoration: underline;
+}
+::-webkit-input-placeholder {
+   font-style: italic;
+   font-family: "adobe-garamond-pro", Georgia, serif;
+}
+::-moz-placeholder {
+   font-style: italic;
+   font-family: "adobe-garamond-pro", Georgia, serif;
+}
+:-ms-input-placeholder {
+   font-style: italic;
+   font-family: "adobe-garamond-pro", Georgia, serif;
+}
+.interface-hebrew ::-webkit-input-placeholder {
+  font-style: normal;
+  font-family: "Heebo", sans-serif;
+}
+.interface-hebrew ::-moz-placeholder {
+  font-style: normal;
+  font-family: "Heebo", sans-serif;
+}
+.interface-hebrew :-ms-input-placeholder {
+  font-style: normal;
+  font-family: "Heebo", sans-serif;
+}
+input {
+}
+.lexicon-content{
+  font-size: 15px;
+  padding-bottom: 10px;
+  margin-bottom: 1px;
+}
+.lexicon-link:hover {
+  text-decoration: underline;
+}
+.lexicon-header {
+  padding: 10px;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #AAAAAA;
+}
+.lexicon-header h4 {
+  font-size: 1.2em;
+  margin: 0px;
+}
+.entry + .entry {
+  padding-top: 10px;
+}
+.lexicon-results .entry > div{
+  padding: 1% 0 1% 0;
+  margin: auto;
+}
+.lexicon-results .entry .headword {
+  color: #333;
+  font-size: 1.2em;
+  display: block;
+}
+.lexicon-results .entry .morphology {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  color: #999;
+  display: block;
+}
+.lexicon-results .entry .definition-content{
+    color: #444;
+}
+.lexicon-results ol {
+	list-style-position: inside;
+}
+.lexicon-results .entry .definition li.sense{
+	margin-left: 15px;
+	padding: 0px;
+}
+.lexicon-results .entry .definition ol.senses{
+	padding-left: 0px;
+}
+.lexicon-results .entry .definition > li.sense{
+	margin-left: 0px;
+}
+.lexicon-results .entry ol.definition {
+	list-style-type: none;
+	padding-top: 2px;
+	padding-left: 0px;
+    margin: 0px;
+}
+.lexicon-results .attribution {
+
+}
+.lexicon-results .attribution span {
+  display: block;
+}
+.lexicon-results .attribution a {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  color: #aaa;
+  font-size: 10px;
+}
+.lexicon-content .headword.en, .lexicon-content .headword.he,
+.lexicon-content .definition-content.en, .lexicon-content .definition-content.he,
+.lexicon-content .lexicon-results .attribution {
+  display: inline;
+}
+.lexicon-content .headword.he, .lexicon-content .definition-content.he {
+  direction: rtl;
+}
+.lexicon-content .headword.en, .lexicon-content .definition-content.en {
+  direction: ltr;
+}
+.lexicon-instructions,
+.lexicon-content .loadingMessage {
+  font-size: 15px;
+  font-style: italic;
+}
+h2.splitHeader {
+  margin-bottom: 10px;
+  text-align: left;
+}
+h2.splitHeader .en {
+  font-size: 14px;
+}
+h2.splitHeader .he {
+  font-size: 14px;
+}
+.splitHeader .actionText {
+  float:right;
+  text-transform: none;
+  cursor: pointer;
+  color: inherit;
+}
+.splitHeader .actionText select {
+  margin-left: 6px;
+}
+.sheetsNewButton {
+  text-align:center;
+  margin-bottom: 30px;
+}
+.sheetsNewButton a {
+  font-color: inherit;
+}
+.sheet.userSheet .sheetTitle  {
+  font-family: "adobe-garamond-pro", Georgia, serif;
+  font-size: 20px;
+  color:#333;
+  margin-bottom: 6px;
+  unicode-bidi: plaintext;
+}
+.sheet.userSheet {
+  font-size: 14px;
+  color:#999;
+  text-decoration: none;
+  flex-direction: column;
+}
+.interface-english .sheet.userSheet{
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.interface-hebrew .sheet.userSheet{
+  font-family: "Heebo", "sans-serif";
+}
+.sheet.userSheet .userSheetInfo{
+  display: flex;
+  justify-content: flex-start;
+}
+.sheet.userSheet .userSheetInfo span:before{
+  content: '·';
+  margin: auto 4px;
+}
+.sheet.userSheet .userSheetInfo span:first-child:before{
+  content: '';
+  margin: 0;
+}
+.sheet.userSheet .sheetAccess{
+  margin: auto 4px;
+}
+.filterByTag {
+  cursor: pointer;
+  text-transform: none
+}
+.sheet.userSheet .sheetEditButtons {
+  font-size: 24px;
+  height: 32px;
+  width: 32px;
+  text-align: center;
+  line-height: 32px;
+  background-color: white;
+  border: 1px solid #E6E6E6;
+  border-radius: 4px;
+  margin-left: 10px;
+  display: none;
+  float:right;
+  cursor: pointer;
+  color: #999;
+  text-decoration: none;
+}
+.sheetButton:hover {
+  text-decoration: underline;
+}
+.sheetButton{
+  border: 1px solid #fff;
+}
+.sheetButton.active {
+  border: 1px solid #333;
+}
+.tagString a {
+  text-decoration: none;
+  color: #999;
+}
+.tagString a:after {
+  content: ", ";
+  color: #999;
+}
+.tagString a:last-child:after {
+  content: "";
+}
+.groupsList {
+  margin-top: 30px;
+}
+.groupsList .loadingMessage {
+  text-align: center;
+}
+.groupListing {
+  padding: 30px 0;
+}
+.groupListing + .groupListing {
+  border-top: 1px solid #ccc;
+}
+.groupListingImageBox {
+  background-color: white;
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-right: 20px;
+}
+.groupListingImage {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.groupListingImage.default {
+  width: 80%;
+  height: 80%;
+  margin: 10%;
+  opacity: 0.4;
+}
+.groupListingName {
+  display: block;
+  font-size: 24px;
+  color: #666;
+  margin-bottom: 5px;
+}
+.groupListingName:hover {
+  color: #333;
+}
+.groupListingDetails {
+  color: #999;
+  font-size: 15px;
+}
+.groupListingDetailSeparator {
+  margin: 8px;
+}
+.groupPage .groupImage {
+  max-height: 200px;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto 50px;
+}
+.groupInfo {
+  margin-bottom: 50px;
+}
+.groupPage h1 {
+  margin-top: 20px;
+  height: auto;
+}
+.groupPage a:hover {
+  color: inherit;
+}
+.groupPage .groupWebsite {
+  display: block;
+  text-align: center;
+  font-size: 17px;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  margin-bottom: 20px;
+  color: #999;
+}
+.groupPage .groupDescription {
+  font-size: 16px;
+  text-align: center;
+}
+.groupPage .tabs {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.groupPage .bubbleTab {
+  font-size: 16px;
+}
+.groupPage .emptyMessage {
+  text-align: center;
+}
+.groupPage .emptyMessage a {
+  text-decoration: underline;
+}
+.groupInvitationBox {
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 20px;
+}
+.groupSheetInner {
+  display: flex;
+}
+.groupSheetInnerContent {
+  flex: 1;
+}
+.groupSheetListingPinButton {
+  display: none;
+  opacity: 0.3;
+  cursor: pointer;
+}
+.sheet:hover .groupSheetListingPinButton.active {
+  display: block;
+}
+.groupSheetListingPinButton.pinned {
+  display: block;
+  opacity: 0.6;
+}
+#groupInvitationInput {
+  padding: 14px 30px;
+  width: 492px;
+  border-radius: 4px;
+  outline: 0;
+  border: 1px solid #E6e6e6;
+  margin-right: 10px;
+  font-size: 18px;
+  position: relative;
+  top: 3px;
+}
+.groupInvitationBoxMessage {
+  font-size: 18px;
+  padding: 12px 0 0;
+  text-align: center;
+}
+.groupPage .groupMemberListing {
+  padding: 24px 0;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 20px;
+}
+.groupMemberListing + .groupMemberListing {
+  border-top: 1px solid #CCC;
+}
+.groupMemberListingProfileImage {
+  height: 50px;
+  width: 50px;
+  vertical-align: middle;
+}
+.groupMemberListingName {
+  color: #666;
+  margin: 0 20px;
+}
+.groupInvitationListing {
+  display: inline-block;
+  min-height: 50px;
+  line-height: 50px;
+}
+.groupMemberListingRoleBox {
+  float: right;
+  line-height: 50px;
+}
+.groupMemberListingRole {
+  color: #666;
+}
+.groupMemberListingActions {
+  position: relative;
+  display: inline-block;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 12px;
+  line-height: 36px
+}
+.groupMemberListingActionsButton {
+  cursor: pointer;
+  padding: 0 12px;
+  font-size: 18px;
+  color: #CCC;
+}
+.groupMemberListingActionsMenu {
+  position: absolute;
+  right: 0;
+  top: 46px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #999;
+  font-size: 15px;
+  z-index: 1;
+}
+.groupMemberListingActionsMenu .action {
+  padding: 4px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.groupMemberListingActionsMenu .action:hover {
+  background-color: #eee;
+}
+.groupMemberListingActionsMenu .action + .action {
+  border-top: 1px solid #ccc;
+}
+.groupMemberListingActionsMenu .role {
+  font-size: 17px;
+  margin-right: 4px;
+}
+.groupMemberListingActionsMenu .role.current {
+  color: #666;
+}
+.topicsPanel.systemPanel.readerNavMenu h1 {
+  margin-bottom: 30px;
+}
+.topicsPanel .loadingMessage {
+  text-align: center;
+}
+.topicsPanel .topicFilterBox {
+  position: relative;
+}
+.topicsPanel .topicFilterIcon {
+  font-size: 22px;
+  position: absolute;
+  top: 24px;
+  left: 0;
+  opacity: 0.4;
+}
+.topicsPanel .topicFilterInput {
+  padding: 20px 10px 20px 34px;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+}
+.topicsPanel .topicsFilterReset {
+  position: absolute;
+  top: 26px;
+  right: 0;
+  color: #999;
+  cursor: pointer;
+}
+.topicsPanel .topicsFilterResetIcon {
+  height: 16px;
+  width: 16px;
+  opacity: 0.4;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.topicsPanel .topicList {
+  min-height: 500px;
+}
+.topicPanel .topicLabel {
+  text-transform: uppercase;
+  font-weight: lighter;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.topicPanel .topicLabel a {
+  color: #8E8E8E;
+}
+#s2 .topicPanel h1 {
+  margin-bottom: 50px;
+  font-size: 30px;
+}
+#s2 .topicPanel h1 .int-en {
+  font-family: "adobe-garamond-pro", Georgia, serif;
+}
+#s2 .topicPanel h1 .int-he {
+  font-family: "Frank Ruehl Libre", "Taamey Frank", "Times New Roman", serif;
+}
+.topicPanel .relatedTopicsList {
+  margin-bottom: 70px;
+  text-align: center;
+}
+.topicPanel .relatedTopic {
+  margin: 0 7px;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.4;
+  display: inline-block;
+}
+.topicPanel .sourceList {
+  min-height: 500px;
+}
+.topicPanel .sourceList .loadingMessage {
+  text-align: center;
+}
+.topicPanel .topicSource {
+  margin-bottom: 40px;
+  cursor: pointer;
+  position: relative;
+}
+.topicPanel .topicSource .title {
+  font-weight: bold;
+}
+.topicPanel .topicSource .score {
+  font-size: 17px;
+  color: #333;
+  font-weight: normal;
+  white-space: nowrap;
+  border-radius: 4px;
+  padding: 3px;
+}
+.topicPanel .topicSource .score:hover {
+  background-color: #EEE;
+}
+.topicPanel .topicSource .score:active {
+  background-color: #DDD;
+}
+.hebrew .topicPanel .topicSource .score {
+  right: auto;
+  left: 5px;
+}
+.topicPanel .topicSource .score img {
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+  margin: -4px 0 0 2px;
+  opacity: 0.6;
+}
+.note a {
+  color: #333;
+  text-decoration: underline;
+}
+.myNotesPanel .noteList {
+  margin-bottom: 220px;
+}
+.noteListing {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ccc;
+}
+.noteListing a:hover {
+  text-decoration: none;
+}
+.noteListing .textRange .title {
+  font-size: 18px;
+  color: #999;
+  margin-bottom: 10px;
+}
+.noteListing .textRange .title:hover {
+  text-decoration: underline;
+}
+.noteListing .textRange .text {
+  font-size: 18px;
+  font-style: italic;
+  color: #999;
+  margin-bottom: 18px;
+}
+.noteListing .segment {
+  display: block;
+}
+.noteListing .note {
+  font-size: 18px;
+}
+.noteListing .addToSheetButton {
+  visibility: hidden;
+  float: right;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  display: inline-block;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+.noteListing:hover .addToSheetButton {
+  visibility: visible;
+}
+.noteListing .mask {
+  background-color: white;
+  opacity: 0.5;
+}
+.addToSourceSheetModal {
+  position: absolute;
+  display: block;
+  left: 40%;
+  top: 240px;
+  width: 330px;
+  padding: 20px;
+  background: #F9F9F7;;
+  border: #ccc 1px solid;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px #ccc;
+  z-index: 200;
+}
+.addToSourceSheetModal .closeButton {
+  margin-bottom: 10px;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  opacity: 0.5;
+  float: right;
+}
+/*** Interface lang - merge with static.css? ***/
+.interface-hebrew .int-en {
+  display: none;
+}
+.interface-english .int-he {
+  display: none;
+}
+.readerApp.interface-hebrew .readerPanel {
+  direction: rtl;
+}
+.readerApp.interface-english .readerPanel {
+  direction: ltr;
+}
+.int-he {
+  font-family: "Heebo", sans-serif;
+  direction: rtl;
+}
+.int-en {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.searchBox .keyboardInputInitiator {
+    opacity: 0;
+    width: 16px;
+    height: 16px;
+    padding: 4px 7px;
+    background-color: #fff;
+    border-radius: 3px;
+    border: 1px solid #aaa;
+    position: initial;
+    vertical-align: -7px;
+}
+body #keyboardInputMaster {
+    opacity: 1;
+    top: 53px !important;
+    left:70px !important;
+    background-color: #F9F9F7;
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-shadow: none;
+    border-radius: 0.3em;
+}
+body #keyboardInputMaster thead{
+    display: none;
+}
+body #keyboardInputMaster:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 30px;
+  border-bottom: 10px solid #ccc;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+body #keyboardInputMaster:after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 31px;
+  border-bottom: 9px solid #f9f9f9;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+}
+body #keyboardInputMaster tbody tr td table{
+    border-spacing: 2px 2px;
+}
+body #keyboardInputMaster tbody tr td table tbody tr td{
+    border: 0.5px solid #eee;
+    background: white;
+    font-family: "Heebo","proxima-nova", sans-serif;
+    min-width: 15px;
+    vertical-align: middle;
+    padding: 2px 8px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+body #keyboardInputMaster tbody tr td table tbody tr td:hover,
+body #keyboardInputMaster tbody tr td table tbody tr td:active,
+body #keyboardInputMaster tbody tr td table tbody tr td.pressed{
+    border: 1px solid #eee;
+    background: #eee;
+}
+#editGroupPageContainerInner {
+  position: relative;
+}
+#editGroupPage .int-en {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+}
+#editGroupPage .int-he {
+  font-family: "Heebo", sans-serif;
+}
+#editGroupPage .field {
+  box-sizing: border-box;
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 10px;
+}
+#editGroupPage .field.halfWidth {
+  width: 50%;
+  display: inline-block;
+}
+#editGroupPage .field.quarterWidth {
+  width: 25%;
+  display: inline-block;
+}
+#editGroupPage .field.threeQuarterWidth {
+  width: 75%;
+  display: inline-block;
+}
+#editGroupPage .field > label {
+  display: block;
+  margin-bottom: 15px;
+}
+#editGroupPage input,
+#editGroupPage textarea {
+  display: block;
+  width: 100%;
+  padding: 15px 12px;
+  border-radius: 5px;
+  border: none;
+  box-sizing: border-box;
+  color: #333;
+}
+#editGroupPage .hiddenFileInput {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+#groupDescription:focus {
+}
+#editGroupPage .groupImage {
+  max-width: 200px;
+  margin-bottom: 5px;
+  display: block;
+}
+#editGroupPage .groupCover {
+  width: 100%;
+  margin-bottom: 5px;
+}
+#editGroupPage .helperText {
+  color: #999;
+  font-size: 13px;
+}
+#editGroupPage .groupHeaderBox {
+  width: 100%;
+  background-color: white;
+  margin-bottom: 5px;
+}
+#editGroupPage .groupHeader {
+  float: right;
+  max-width: 100%;
+}
+#editGroupPage .deleteGroup {
+  cursor: pointer;
+  cursor: pointer;
+  margin: 30px 10px;
+  color: #999;
+  text-align: right;
+}
+#editGroupPage .deleteGroup:hover {
+  text-decoration: underline;
+}
+.dropdown {
+  position: relative;
+}
+.dropdown .dropdownMain {
+  background: white;
+  border: 1px solid #E9E9E9;
+  border-radius: 4px;
+  padding: 16px 22px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.addToSourceSheetBox .dropdownMain .loadingMessage {
+  margin: 0;
+}
+.dropdown .dropdownOpenButton {
+  float: right;
+  cursor: pointer;
+  color: #999;
+  font-size: 18px;
+}
+.dropdown .dropdownListBox {
+  position: absolute;
+  z-index: 1;
+  margin-top: -12px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #E9E9E9;
+  background: white;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.dropdown .dropdownList {
+  color: #999;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 0;
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.singlePanel .dropdown .dropdownList {
+  max-height: 150px;
+}
+.dropdown .dropdownList .dropdownOption {
+  font-size: 16px;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  cursor: pointer;
+  padding: 0 22px;
+  margin: 26px 0;
+  border: none;
+  color: #999;
+}
+.dropdown .dropdownList .dropdownOption.selected {
+  color: #333;
+}
+#footer {
+  background-color: white;
+  border-top: 1px solid #F4F4F4;
+  overflow: hidden;
+  padding: 18px 40px;
+  text-align: left;
+  color: #999;
+}
+#footer a {
+  display: block;
+  color: #999;
+}
+#footer.interface-hebrew, .interface-hebrew #footer{
+  direction: rtl;
+  text-align: right;
+}
+#footer.interface-english .int-he, .interface-english #footer .int-he {
+  display: none;
+}
+#footer.interface-english .int-en, .interface-english #footer .int-en {
+  display: inline;
+}
+#footer.interface-hebrew .int-he, .interface-hebrew #footer .int-he {
+  display: inline;
+  text-align: right;
+}
+#footer.interface-hebrew .int-en, .interface-hebrew #footer .int-en {
+  display: none;
+}
+#footerInner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+#footer .section {
+  display: inline-block;
+  vertical-align: top;
+  width: 200px;
+  margin: 20px 0;
+}
+#footer.interface-english .section, .interface-english #footer .section {
+  text-align: left;
+}
+#footer.interface-hebrew .section, .interface-hebrew #footer .section {
+  text-align: right;
+}
+#footer .section .header {
+  color: #666;
+  margin-bottom: 18px;
+  font-weight: normal;
+  font-size: 15px;
+}
+#footer .section.last {
+  float: right;
+  text-align: right;
+}
+#footer.interface-hebrew .section.last, .interface-hebrew #footer .section.last {
+  float: left;
+  text-align: left;
+}
+#footer .section a {
+  font-size: 15px;
+  margin: 2px 0;
+}
+#footer .fa {
+  margin: 0 3px;
+}
+#footer .header.connect {
+  text-transform: uppercase;
+}
+#newsletterFooterBox {
+  position: relative;
+  margin-bottom: 4px;
+}
+#newsletterInput {
+  border-radius: 6px;
+  padding: 8px 32px 11px 16px;
+  width: 150px;
+  font-size: 15px;
+  border: 1px solid #EEE;
+  margin-bottom: 6px;
+  color: #333;
+}
+#newsletterInput ::-webkit-input-placeholder,
+#newsletterInput ::-moz-placeholder,
+#newsletterInput :-ms-input-placeholder {
+  color: #AAA;
+}
+#newsletterFooterBox img {
+  height: 18px;
+  width: 18px;
+  opacity: 0.2;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+}
+#footer.interface-hebrew #newsletterInput {
+  padding: 8px 16px 11px 32px;
+}
+#footer.interface-hebrew #newsletterFooterBox img {
+  right: auto;
+  left: 12px;
+  transform: scale(-1, 1);
+}
+#subscribeMessage {
+  margin-bottom: 14px;
+  color: #333;
+  font-style: italic;
+  text-align: center;
+}
+#footer .section.connect a {
+  display: inline;
+  margin: 0 4px;
+}
+#footer #socialButtons {
+  margin-bottom: 6px;
+}
+#footer #facebookButton {
+  display: inline-block;
+  vertical-align: middle;
+}
+#footer #twitterButton {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 4px;
+  margin-top: 4px;
+}
+#footer.interface-hebrew #twitterButton {
+  margin-left: 0;
+  margin-right: 4px;
+}
+#footer #siteLanguageToggle {
+  color: #999;
+  margin-top: 30px;
+  font-size: 15px;
+}
+#footer #siteLanguageToggle #siteLanguageToggleLabel {
+  display: block;
+  text-transform: uppercase;
+}
+#footer a#siteLanguageEnglish,
+#footer a#siteLanguageHebrew {
+  cursor: pointer;
+  color: #666;
+  display: inline;
+  margin: 0 3px;
+}
+#footer #siteLanguageEnglish:hover,
+#footer #siteLanguageHebrew:hover {
+  text-decoration: underline;
+}
+#footer a#siteLanguageHebrew {
+}
+.multiPanel .readerNavMenu .content.hasFooter #footer {
+  margin-top: 120px;
+}
+.gemarra-regular, .gemarra-italic {
+  font-weight: bold;
+}
+.it-text, .gemarra-italic {
+  font-style: italic;
+}
+.categoryAttribution a {
+  color: inherit;
+}
+.bubbleTab {
+  padding: 10px 25px;
+  margin: 3px;
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid #DADADA;
+  display: inline-block;
+  font-size: 12px;
+  color: #999;
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", sans-serif;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.bubbleTab:hover {
+  text-decoration: none;
+}
+.bubbleTab.active {
+  color: #333;
+}

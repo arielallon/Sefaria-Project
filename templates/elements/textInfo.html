@@ -2,36 +2,32 @@
 {% load sefaria_tags %}
 
 <table data-title="{{ text.title }}">
+	<tbody>
 	<tr>
-		<td class="title" id="{{ text.title.split|join:'_' }}">
-			{% if text.categories.0 == "Commentary" %}
-				{{ text.title }}
-			{% elif text.categories.0 == "Mishneh Torah" %}
-				<a href="/{{ text.title|url_safe }}">{{ text.title|trim_mishneh_torah }}</a>
-			{% else %}
-				{{ text.title|url_ref }}
-			{% endif %}
-		</td>
-	 	<td class="counts">
-		{% include "elements/availableCounts.html" with text=text %}
+		<td class="title en" id="{{ text.title.split|join:'_' }}">
+			<a href="/{{ text.title|url_safe|urlencode }}">
+				{% if commentator_only %}
+					{{ text.commentator }}
+				{% else %}
+					{{ text.title|trim_title }}
+				{% endif %}
+			</a>
 		</td>
 		{% if text.heTitle %}
-		<td class="heTitle">
-			{% if text.categories.0 == "Mishneh Torah" %}
-				{{ text.heTitle|trim_mishneh_torah }}
-			{% else %}
-				{{ text.heTitle }}
-			{% endif %}
+		<td class="heTitle he">
+			<a href="/{{ text.title|url_safe|urlencode }}">
+				{% if commentator_only %}
+					{{ text.heCommentator }}
+				{% else %}
+					{{ text.heTitle|trim_title }}
+				{% endif %}
+			</a>
 		</td>
 		{% else %}
 		<td class="heTitle empty">
-			{% if user.email %}
-				שם עברית
-			{% else %}
-				<a href="/login?next=/texts">שם עברית</a>
-			{% endif %}
+			שם עברית
 		</td>
 		{% endif %}
 	</tr>
-	<tr class="details"></tr>
+	<tbody>
 </table>

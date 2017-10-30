@@ -27,40 +27,84 @@
 
 # OS generated files #
 ######################
+.DS_Store
 .DS_Store?
 ehthumbs.db
 Icon?
 Thumbs.db
+.idea
 
-# Apache Config  #
-#############
+# Apache Config #
+#################
 .htaccess
 .htpasswd
 
-# Sefaria Local Settings file #
-######################
-/sefaria/local_settings.py
+# Redis Dumps #
+###############
+dump.rdb
 
-# Symlink needed for Djano admin
+# Node Modules #
+################
+/node_modules
+
+# PyCharm directory #
+#####################
+/.idea
+
+# Sefaria Local Settings files #
+################################
+/sefaria/local_settings.py
+/node/local_settings.json
+
+# Symlink needed for Djano admin #
+##################################
 /static/admin
 
 #  Virtualenv Files #
+#####################
 venv/
 
 # Partner files #
+#################
 /static/partner
 
-# Enviornment Specific Mongo Dumps
-system.users.bson
+# Robots.txt #
+##############
+/static/robots.txt
 
-# Sitemap
-/data/sitemap.txt
+# Sitemaps #
+############
+/static/sitemaps
 
-# Backed up Data
+# Backed up Data # 
+##################
 /data/backup
 
-# Search Index
-/data/index
+# Private Data Files # 
+##################
+/data/private
 
-#Logs
+# Logs #
+########
 /logs
+/log
+
+# Docs #
+########
+/doc/_build
+
+# Client secrets for Google OAuth 2.0
+#####################################
+client_secrets.json
+
+# Webpack #
+###########
+/static/bundles
+webpack-stats.*\.json
+webpack-stats.json
+
+# PAGERANK #
+/static/pagerank.json
+/static/sheetrank.json
+
+/random_files

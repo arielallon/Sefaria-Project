@@ -4,26 +4,26 @@
 {% load humanize %}
 
 {% block head %}
-	<meta name="description" content="Help create the first free English translation of the Mishnah. None currently exists, but with your help we can change that.">
+	<meta name="description" content="Help create the first free English translation of {{ base_ref }}. None currently exists, but with your help we can change that.">
 {% endblock %}
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
 
 <div id="translateCampaign" class="container">
-	
+
 	<div class="row">
 		<div class="span10 offset1">
 			<div id="about">
 
 				{% if not thanks %}
-					<h1>Help create the first free English Mishnah</h1>
-					<p>There is currently no complete English translation of the Mishnah in the Public Domain - we can change that. You don't have to be an expert to help, this is just a first draft. Your contribution with be reviewed and edited by the Sefaria community. This text will be licensed under a <a href="http://creativecommons.org/publicdomain/zero/1.0/" target="_blank">Creative Commons Zero</a> license - free for anyone to use or reuse.</p> 
+					<h1>{{ title }}</h1>
+					<p>You don't have to be an expert to help, this is just a first draft. Your contribution will be reviewed and edited by the Sefaria community. This text will be licensed under a <a href="http://creativecommons.org/publicdomain/zero/1.0/" target="_blank">Creative Commons Zero</a> license - free for anyone to use or reuse.</p>
 					<p id="askAFriendBox">
 						<b>Can't translate Hebrew?</b>&nbsp;&nbsp;
 						<span id="askSomeone">Ask a friend to help.</span>
 						<div id="shareModal" class="modal">
-							<h3>Tell your friends you want them help create a free English Mishnah</h3>
+							<h3>Tell your friends you want them help create a free English translation of {{ assigned.book }}</h3>
 							<!-- AddThis Button BEGIN -->
 							<div class="shareBox addthis_toolbox addthis_default_style addthis_32x32_style">
 								<a class="addthis_button_facebook"></a>
@@ -33,7 +33,7 @@
 								<a class="addthis_button_email"></a>
 								<input value="{{ request.build_absolute_uri }}">
 							</div>
-							<!-- AddThis Button END -->	
+							<!-- AddThis Button END -->
 						</div>
 					</p>
 				{% else %}
@@ -49,32 +49,14 @@
 						<a class="addthis_button_email"></a>
 						<input value="{{ request.build_absolute_uri }}">
 					</div>
-					<!-- AddThis Button END -->	
+					<!-- AddThis Button END -->
 				{% endif %}
 
 				<div class="graph text">
 					<div class="graphInner">
-						<div class="progressBar" style="width:{{ percent.text }}%">
-							<span class="completeText">{{ percent.text|floatformat:0|intcomma }}% complete</span>
-							<span class="remainingText">{{ remaining.text|intcomma }} Mishnayot to finish {{ assigned.book }}</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="graph order">
-					<div class="graphInner">
-						<div class="progressBar" style="width:{{ percent.order }}%">
-							<span class="completeText">{{ percent.order|floatformat:0|intcomma }}% complete</span>
-							<span class="remainingText">{{ remaining.order|intcomma }} Mishnayot to finish {{ assigned.categories.1 }}</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="graph total">
-					<div class="graphInner">
-						<div class="progressBar" style="width:{{ percent.total }}%">
-							<span class="completeText">{{ percent.total|floatformat:0|intcomma }}% complete</span>
-							<span class="remainingText">{{ remaining.total|intcomma }} Mishnayot to finish the entire Mishnah</span>
+						<div class="progressBar" style="width:{{ percent }}%">
+							<span class="completeText">{{ percent|floatformat:0|intcomma }}% complete</span>
+							<span class="remainingText">{{ remaining|intcomma }} {{ assigned_segment_name }}s of {{ assigned.book }} untranslated</span>
 						</div>
 					</div>
 				</div>
@@ -86,23 +68,30 @@
 
 	<div class="row" id="transTitle">
 		<div class="span6">
-			<h2>Your assigment: {{ assigned_ref|url_ref }}</h2>
-			Click words to open dictionary. <a href="/translate/Mishnah?random=1">Get a different assignment.</a>
+			<h2>Your assigment: {{ assigned_ref|ref_link }}</h2>
+			Click words to open dictionary. <a href="/translate/{{ base_ref|url_safe }}?random=1{{ random_param }}">Get a different assignment.</a>
 		</div>
 
 		<div class="span6">
 			<h2>Your translation:</h2>
+			<br>
+			Please review our <a href="/translation-guidelines">translation guidelines</a>.
 		</div>
 
 	</div>
 	<div class="row" id="transBox">
 		<div class="span6">
-			<div id="original">{{ assigned_text }}</div>
+			<div id="original">
+				{% autoescape off %}
+					{{ assigned_text }}
+				{% endautoescape %}
+			</div>
 		</div>
 
 		<div class="span6">
 			<textarea id="translation"></textarea>
 		</div>
+		<div class="clear"></div>
 	</div>
 
 	<div id="actions" class="row">
@@ -113,13 +102,7 @@
 			<div id="loginThenSave" class="btn btn-primary btn-large">Save</div>
 		{% endif %}
 		</div>
-	</div>
-
-	<div class="row">
-		<br>
-		We are grateful to the <a href="http://en.wikisource.org/wiki/Wikisource:Open_Mishnah_Project" targer="_blank">Open Mishnah Project</a> for beginning this effort in a way that allows anyone to continue it.
-		<br><br>
-		<a href="/forum">Report a problem</a> with the Hebrew text.
+		<div class="clear"></div>
 	</div>
 
 
@@ -167,7 +150,7 @@
 					<label for="id_subscribe_announce">Receive important announcements (no more than once a month):</label>
 					<input checked="checked" type="checkbox" name="subscribe_announce" id="id_subscribe_announce">
 				</p>
-			    <input type="hidden" name="noredirect" value="true" />	   	
+			    <input type="hidden" name="noredirect" value="true" />
 			    <button id="submitRegister" type="submit" class="btn btn-primary btn-large">
 			    	Create Account
 			    </button>
@@ -182,7 +165,7 @@
 			<div class="clear"></div>
 		</div>
 		<div class="btn">Continue Working</div>
-	</div> 
+	</div>
 
 	<div id="overlay"></div>
 </div>
@@ -191,10 +174,10 @@
 {% block js %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/jquery-ui.min.js"></script>
-<script src="/static/js/jquery.autosize.js"></script>
-<script src="/static/js/util.js"></script>
-<link rel="stylesheet" type="text/css" href="/static/css/jquery.countdown.css"> 
-<script type="text/javascript" src="/static/js/jquery.countdown.js"></script>
+<script src="/static/js/lib/jquery.autosize.js"></script>
+<script src="/static/js/s1/util.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/jquery.countdown.css">
+<script type="text/javascript" src="/static/js/lib/jquery.countdown.js"></script>
 
 <script>
 {% autoescape off %}
@@ -212,7 +195,17 @@ $(function() {
 		$("#overlay").show();
 	});
 
-	$("#original").html(linkToDictionary("{{assigned_text}}"));
+
+	// Wrap all Hebrew words in links to a dictioary
+	findAndReplaceDOMText(document.getElementById("original"), {
+		find: /[^ .,;:()]+/g,
+		wrap: "a"
+	});
+	$("#original a").each(function() {
+		var word = $(this).text();
+		$(this).attr("href", "http://www.morfix.co.il/" + word)
+			.attr("target", "_blank");
+	});
 
 	$("#save").click(saveTranslation);
 
@@ -287,9 +280,11 @@ var saveTranslation = function() {
 			sjs.alert.message(data["error"]);
 		} else {
 			sjs.track.event("Campaign", "Successful Save", "");
-			var next = "/translate/Mishnah?thank=you";
+			var next = "/translate/{{ base_ref|url_safe }}?thank=you";
 			{% if next_text %}
-			next += "&text={{ next_text|url_safe }}"
+			next += "&text={{ next_text|url_safe }}";
+			{% elif next_section %}
+			next += "&section={{ next_section }}";
 			{% endif %}
 			window.location = next;
 		}
@@ -350,7 +345,7 @@ var renewLock = function() {
 };
 
 
-var releaseLock = function() { 
+var releaseLock = function() {
 	var postUrl = "/api/locks/release/{{ assigned_ref_url }}/en/Sefaria_Community_Translation";
 	$.ajax({
 	    type: 'POST',
@@ -359,5 +354,4 @@ var releaseLock = function() {
 	});
 };
 </script>
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=undefined"></script>
 {% endblock %}

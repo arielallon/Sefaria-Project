@@ -1,79 +1,176 @@
 ## New Interfaces for Jewish Texts
 
-Sefaria is creating interfaces, apps (like a source sheet builder) and infrastructure (like an API and a structured dataset) for Jewish texts and textual learning. Our demo is up at www.sefaria.org.
+Sefaria is creating interfaces, apps (like a source sheet builder) and infrastructure (like an API and a structured dataset) for Jewish texts and textual learning. Our website is up at www.sefaria.org.
 
-You can find outputs of our entire database in [Sefaria-Data](https://github.com/blockspeiser/Sefaria-Data).
+You can find outputs of our entire database in [Sefaria-Export](https://github.com/Sefaria/Sefaria-Export).
 
 Interested developers should join the [sefara-dev mailing list](https://groups.google.com/forum/#!forum/sefaria-dev).
 
 For general discussion about the project, please post to the [Sefaria Forum](https://groups.google.com/forum/?fromgroups#!forum/sefaria).
 
+You can post bugs or request/discuss features on [GitHub Issues](https://github.com/blockspeiser/Sefaria-Project/issues?direction=desc&page=1&sort=created&state=open). Tackling an issue marked as a "Starter Project" is a good way to sink your teeth into Sefaria.
+
+If you're interested in working on a project you see listed here, please email the [sefara-dev mailing list](https://groups.google.com/forum/#!forum/sefaria-dev).
+
 ***
 
 ### Getting Started
 
-#### Install dependencies using pip and virtualenv:
+#### Install Python
+Most UNIX systems come with a python interpreter pre-installed. 
+##### For Windows:
 
-If you don't already have them, install [virtualenv](http://pypi.python.org/pypi/virtualenv) and [pip](http://www.pip-installer.org/en/latest/installing.html). Then use them to install the required Python packages.
+Go to the [Python Download Page](https://www.python.org/download/releases/2.7.6) and download and install python.
+Add the python directory to your OS' PATH variable. See [here](https://docs.python.org/2/using/windows.html)
 
-    $ virtualenv venv --distribute
-    $ pip install -r requirements.txt
-    $ source venv/bin/activate
+#### (Optional) Install virtualenv:
+If you work on many Python projects, you may want to keep Sefaria's python installation separate using Virtualenv.  If you're happy having Sefaria requirements in your main Python installation, skip this step.
 
-Now you should see `(venv)` in front of your command prompt. The third command sets your shell to use the Python virtual environment that you've just created. This is something that you have to run everytime you open a new shell and want to run the Sefaria demo. You can always tell if you're in the virtual environment by checking if `(venv)` is at the beginning of your command prompt. If for some reason you don't want to use virtualenv, just run the second command.
+Install [virtualenv](http://pypi.python.org/pypi/virtualenv) then enter these commands:
+
+    virtualenv venv --distribute
+    source venv/bin/activate
+
+Now you should see `(venv)` in front of your command prompt. The second command sets your shell to use the Python virtual environment that you've just created. This is something that you have to run everytime you open a new shell and want to run the Sefaria demo. You can always tell if you're in the virtual environment by checking if `(venv)` is at the beginning of your command prompt. 
+    
+#### Pip: 
+If you don't already have it in your Python installation, install [pip](https://pip.pypa.io/en/stable/installing/). Then use it to install the required Python packages.
+
+	pip install -r requirements.txt
+
+If you are not using virtualenv, run it with sudo: `sudo pip install -r requirements.txt`
+
+If you see an error about a missing 'python.h' file, you'll need to install the Python development libraries. 
+
+On Debian systems: 
+
+    sudo apt-get install python-dev
+
+On Fedora systems:
+
+    sudo dnf install python2-devel
+
+After installing the Python development libraries, run `pip install -r requirements.txt` again.
+
+On Windows systems, use instructions [here](http://www.tylerbutler.com/2012/05/how-to-install-python-pip-and-virtualenv-on-windows-with-powershell/) and then make sure that the scripts sub folder of the python installation directory is also in PATH.
+
+#### Install gettext
+
+gettext is a GNU utility that Django uses to manage localizations. 
+
+On Mac:
+
+    brew install gettext
+
+On Debian systems
+
+    sudo apt-get install gettext
 
 #### Create a local settings file:
 
     cd sefaria
     cp local_settings_example.py local_settings.py
-    vim/nano/subl/mate local_settings.py
+    vim local_settings.py
+    
+Replace the placeholder values with values with those matching your environment. You can name your local database (`sefaria` will be the default created by `mongorestore` below). You can leave `SEFARIA_DB_USER` ad `SEFARIA_DB_PASSWORD` blank if you don't need to run authentication on Mongo.
 
-Replace the placeholder values with values with those matching your enviornment. Choose a name for you local database (`sefaria` will be the default created by `mongorestore` below). You can leave `SEFARIA_DB_USER` ad `SEFARIA_DB_PASSWORD` blank if you don't need to run authentication on mongo.
+#### Create a log directory:
+Create a directory called "log" under the project folder. Make sure that the server user has write access to it by using a command such as chmod 777.
 
-#### Get mongod running:
+#### Get Mongo running:
 
-If you don't already have it, [install MongoDB](http://docs.mongodb.org/manual/installation/). Then get it running:
+If you don't already have it, [install MongoDB](http://docs.mongodb.org/manual/installation/). Our current data dump requires MongoDB version 2.6 or later. After installing Mongo, run the mongo daemon with:
 
-    monogod
+    sudo mongod
 
 #### Put some texts in your database:
 
-A MongoDB dump of our database is included in the separate [Sefaria-Data](https://github.com/blockspeiser/Sefaria-Data) repo. Once you've cloned this repo you can:
+A MongoDB dump of our database is available at http://dev.sefaria.org/static/dump.tar.gz . Download and unzip this content, then from the parent directory which contains `dump` run:
 
-    cd Sefaria-Data
-    mongorestore
+    mongorestore --drop
 
 This will create (or overwrite) a mongo database called `sefaria`.
 
 #### Set up Django's local server
+`manage.py` is used to run and to manage the local server.  It is located in the root directory of the `Sefaria-Project` code base. 
 
-If you plan to work on any of the account features, you'll need to run:
+Django auth features run on a separate database. To init this database and set up Django's auth system, switch to the root directory of the `Sefaria-Project` code base, and run: 
 
-	 python manage.py syncdb
-
-to set up Django's authentication system.
-		 
-
+    python manage.py syncdb
+    
 #### Run the development server:
 
     python manage.py runserver
 
-## Exploring the Code
+You can also make it publicly available by specifying 0.0.0.0 for the host:
 
-Some of the most important code is found in:
+    python manage.py runserver 0.0.0.0:8000
 
-- `static/js/reader.js` - JS for reader app
-- `static/js/sheets.js` - JS for source sheet builder
-- `static/js/util.js` - JS shared across apps
-- `sefaria/texts.py` - backend core for manipulating texts
-- `sefaria/sheets.py` - backend for source sheets
-- `sefaria/history.py` - revision history for texts
+#### Get Node:
 
-`texts.py` can be used as a standalone interface to texts or for testing:
+Node is now required to run the site because we are using [Webpack](https://webpack.js.org/) to bundle our javascript. To install node and npm, see [here](https://nodejs.org/en/download/). On Debian systems you can do:
 
-    cd sefaria
-    python -i texts.py
-    >>> get_text("Kohelet 4:9")
+    sudo apt-get install nodejs
+    sudo apt-get install npm
+
+Now download the required Javascript libraries and install some global tools for development with the `setup` script.
+
+    npm install
+    sudo npm run setup
+
+Create a local settings file for node and tell it what port to run on and where to find the Django server. The port should match the `NODE_HOST` variable set in Django's `local_settings.py`.
+
+    cp node/local_settings_example.json node/local_settings.json
+    vim node/local_settings.json
+    
+#### Run Webpack
+
+To get the site running, you need to bundle the javascript with Webpack. Run:
+
+    npm run build-client
+    
+to bundle once. To watch the javascript for changes and automatically rebuild, run:
+
+    npm run watch-client
+
+    
+#### Server-side rendering with Node:
+
+Sefaria uses React.js. To render HTML server-side, we use a Node.js server. For development, the site is fully functional without server-side rendering. For deploying in a production environemnet however server side HTML is very important for bots and SEO. 
+
+For development, you can run the Node server using nodemon with:
+
+    npm start
+    
+You also need to set 
+
+    USE_NODE = True
+    
+in Django's `local_settings.py`. To run webpack with server-side rendering, use:
+
+    npm run build
+    
+or
+
+    npm run watch
+
+## Command Line Interface
+
+The shell script `cli` will invoke a python interpreter with the core models loaded, and can be used as a standalone interface to texts or for testing.
+
+    $ ./cli
+    >>> p = LinkSet(Ref("Genesis 13"))
+    >>> p.count()
+    226
+
+## Thanks
+
+We're grateful to the following orgazations for providing us with donated services:
+
+- [BrowserStack](https://www.browserstack.com/)
+- [Google Apps for Work](https://apps.google.com/)
+- [PyCharm](https://www.jetbrains.com/pycharm/)
+- [Slack](https://slack.com)
 
 
 ## License

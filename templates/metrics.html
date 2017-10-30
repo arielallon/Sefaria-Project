@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load i18n cache humanize sefaria_tags %}
+{% load i18n %}
+
+{% block title %}{% trans "Sefaria Metrics" %}{% endblock %}
+
+{% block description %}{% trans "See graphs charting Sefaria's progress since 2013 across metrics including word counts, number of links and number of source sheets." %}{% endblock %}
+
+{% block content %}
+
+{% if S2 %}
+<div id="metricsPage" class="static">
+	<div class="inner">
+		<h1>Metrics</h1>
+		<div id="metricsBox">
+			Loading...
+		</div>
+	</div>
+</div>
+{% else %}
+<div id="metricsContent">
+	<h1>Metrics</h1>
+	<div id="metricsBox"></div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block js %} 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+	var metrics = {% autoescape off %}{{ metrics_json }}{% endautoescape %};
+	
+	for (var i = 0; i < metrics.length; i++) {
+		metrics[i]["totalWords"] = metrics[i]["heWords"] + metrics[i]["transWords"];
+	}
+
+	var titles = {
+			"totalWords": "Total Words in Library",
+			"heWords": "Words in Hebrew & Aramaic",
+			"transWords": "Words in Translation",
+			"sctWords": "Words of Original Translation created by Sefaria Volunteers",
+			"contributors": "Number of Public Contributors",
+			"links": "Number of Intertextual Links",
+			"sheets": "Number of Source Sheets"
+	};
+
+	var types = {
+			"totalWords": "Words",
+			"heWords": "Words",
+			"transWords": "Words",
+			"sctWords": "Words",
+			"contributors": "Contributors",
+			"links": "Links",
+			"sheets": "Source Sheets"
+	};
+
+	var labels = [];
+	for (var i = 0; i < metrics.length; i++) {
+		var timestamp = metrics[i]["timestamp"]["$date"];
+		var a = new Date(timestamp);
+ 		var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+		var month = months[a.getMonth()];
+		var date = a.getDate();
+
+		labels.push(month + " " + date + ", " + a.getFullYear());
+	}
+
+	var makeData = function(field) {
+		var data = [['Day', types[field]]];
+		for (var i = 0; i < metrics.length; i++) {
+			data.push([labels[i], metrics[i][field]]);
+		}
+		return data;
+	};
+
+	var makeChart = function(field) {
+		var data = makeData(field);
+		var data = google.visualization.arrayToDataTable(data);
+
+		var options = {
+		  title: titles[field],
+		  curveType: 'function',
+		  legend: 'none',
+		  colors: ["#4871bf"],
+		  hAxis: {
+	         baselineColor: '#fff',
+	         gridlineColor: '#fff',
+	         textPosition: 'none'
+		  }
+		};
+
+		$("#metricsBox").append("<div id='" + field + "' class='chart'></div>");
+		var chart = new google.visualization.LineChart(document.getElementById(field));
+
+		chart.draw(data, options);
+	};
+
+	var makeCharts = function() {
+		$("#metricsBox").empty();
+		for (var field in titles) {
+    		if (titles.hasOwnProperty(field)) {
+       			makeChart(field);
+    		}
+		}
+	};
+
+	$(function() {
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(makeCharts);
+	});
+</script>
+{% endblock %}

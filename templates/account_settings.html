@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="accountSettingsPage" class="static biReady">
+	<div class="inner">
+	<h1>
+        <span class="int-en">Account Settings</span>
+        <span class="int-he">הגדרות חשבון</span>
+
+    </h1>
+	<div id="saveCancelButtons">
+		<a class="button transparent control-elem" href="/account">
+			<span class="int-en">Cancel</span>
+			<span class="int-he">בטל</span>
+		</a>
+		<div id="saveAccountSettings" class="button control-elem" tabindex="0" role="button" >
+			<span class="int-en">Save</span>
+			<span class="int-he">שמור</span>
+		</div>
+	</div>
+	<div id="emailNotifications" class="section">
+		<label class="control-elem">
+            <span class="int-en">Email Frequency (Maximum)</span>
+			<span class="int-he">תדירות שליחת אימייל (מקסימלית)</span>
+        </label>
+		<div class="toggleSet tripleOption control-elem" role="radiogroup">
+			<div role="radio" data-value="daily" class="toggleOption {% if profile.settings.email_notifications == "daily" %} active{% endif %}" tabindex="{% if profile.settings.email_notifications == "daily" %}0" aria-checked="true{% else %}-1" aria-checked="false{% endif %}">
+                <span class="int-en">Daily</span>
+			    <span class="int-he">יומית</span>
+            </div><!--
+			--><div role="radio"  data-value="weekly" class="toggleOption {% if profile.settings.email_notifications == "weekly" %} active{% endif %}" tabindex="{% if profile.settings.email_notifications == "weekly" %}0" aria-checked="true{% else %}-1" aria-checked="false{% endif %}">
+                <span class="int-en">Weekly</span>
+			    <span class="int-he">שבועית</span>
+            </div><!--
+			--><div role="radio"  data-value="never" class="toggleOption {% if profile.settings.email_notifications == "never" %} active{% endif %}" tabindex="{% if profile.settings.email_notifications == "never" %}0" aria-checked="true{% else %}-1" aria-checked="false{% endif %}">
+                <span class="int-en">Never</span>
+			    <span class="int-he">לעולם לא</span>
+            </div>
+		</div>
+	</div>
+	<div id="siteLanguage" class="section">
+		<label class="control-elem">
+            <span class="int-en">Site Language</span>
+			<span class="int-he">שפת ממשק</span>
+        </label>
+		<div class="toggleSet doubleOption control-elem" role="radiogroup">
+			<div role="radio" data-value="english" class="toggleOption {% if profile.settings.interface_language == "english" %} active{% endif %}" tabindex="{% if profile.settings.interface_language == "english" %}0" aria-checked="true{% else %}-1" aria-checked="false{% endif %}">English</div><!--
+			--><div role="radio" data-value="hebrew" class="toggleOption {% if profile.settings.interface_language == "hebrew" %} active{% endif %}" tabindex="{% if profile.settings.interface_language == "hebrew" %}0" aria-checked="true{% else %}-1" aria-checked="false{% endif %}">עברית</div>
+		</div>
+	</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+	<script>
+		$(function(){
+		    var $curLang = $("#siteLanguage .toggleOption.active").attr("data-value");
+		    console.log($curLang);
+			$(".toggleOption").click(function() {
+				$(this).closest(".toggleSet").find(".toggleOption").removeClass("active").attr("tabIndex","-1").attr("ariaChecked","false");
+				$(this).addClass("active").attr("tabIndex","0").attr("ariaChecked","true");
+			});
+
+            $(".toggleOption").keyup(function(e){
+                if (e.keyCode === 39) { //39 is right arrow
+                    $(this).next(".toggleOption").focus().trigger("click");
+                }
+                else if (e.keyCode === 37) { //37 is left arrow
+                    $(this).prev(".toggleOption").focus().trigger("click");
+                }
+            });
+
+
+			$("#saveAccountSettings").click(function(){
+				var profile = {
+						settings: {
+							email_notifications: $("#emailNotifications .toggleOption.active").attr("data-value"),
+							interface_language: $("#siteLanguage .toggleOption.active").attr("data-value")
+						}
+				};
+
+				$.post("/api/profile", {json: JSON.stringify(profile)}, function(data) {
+					if ("error" in data) {
+						alert(data.error);
+					} else {
+						alert("Settings Saved.");
+						Sefaria.track.event("Settings", "Settings Save", $("#emailNotifications input:checked").val());
+						var $newLang = $("#siteLanguage .toggleOption.active").attr("data-value");
+						if($newLang != $curLang){
+						    Sefaria.track.setInterfaceLanguage("interface language account settings", $newLang);
+                        }
+						window.location = "/account";
+					}
+				});
+			});
+            $("#saveAccountSettings").keyup(function(e){
+                if (e.keyCode === 13) {
+                    $("#saveAccountSettings").trigger("click");
+                }
+            });
+
+		});
+	</script>
+{% endblock %}
